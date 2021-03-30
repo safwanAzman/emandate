@@ -11,7 +11,7 @@
                         title="Tarikh Daftar" 
                         value="{{ substr($item->hcrdate,0,2).'-'.substr($item->hcrdate,2,2).'-'.substr($item->hcrdate,4,4) }} ">
 
-                        <a href="{{ url('linkrptenrp/'.$item->hcrdate.'')}}" class="rounded-full py-3 px-3 bg-blue-700 hover:bg-blue-600 flex items-center">
+                        <a href="{{ url('linkrptenrp/'.$item->hcrdate.'')}}" class="rounded-full py-3 px-3 bg-orange-500 hover:bg-orange-400 flex items-center">
                             <x-heroicon-o-eye class="w-5 h-5 text-white" />
                         </a>
                         <a href="{{ route('export-ENRP',['id' => $item->hcrdate]) }}" class="rounded-full py-3 px-3 bg-green-700 hover:bg-green-600 flex items-center">

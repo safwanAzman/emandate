@@ -11,7 +11,7 @@
                         title="Tarikh Sekatan" 
                         value="{{ substr($item->blockpayment_date,0,4).'-'.substr($item->blockpayment_date,5,2).'-'.substr($item->blockpayment_date,8,2) }}">
 
-                        <a href="{{ url('linkrptholdall/'.$item->blockpayment_date.'')}}" class="rounded-full py-3 px-3 bg-blue-700 hover:bg-blue-600 flex items-center">
+                        <a href="{{ url('linkrptholdall/'.$item->blockpayment_date.'')}}" class="rounded-full py-3 px-3 bg-orange-500 hover:bg-orange-400  flex items-center">
                             <x-heroicon-o-eye class="w-5 h-5 text-white" />
                         </a>
                         <a href="{{ route('export-holdall',['id' => $item->blockpayment_date]) }}" class="rounded-full py-3 px-3 bg-green-700 hover:bg-green-600 flex items-center">
