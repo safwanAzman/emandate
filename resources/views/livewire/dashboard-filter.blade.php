@@ -37,7 +37,7 @@
             </x-general.grid>
         </div>
         <div class="container bg-white">
-            <x-general.grid mobile="1" gap="5" sm="1" md="3" lg="3" xl="3" class="col-span-6 p-6">
+            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 p-6">
                 <x-card.card-info title="Bil Permohonan" textcolor="blue" bgcolor="blue" value="{{ ($posts->count()) }}"/>
                 <x-card.card-info title="Bil Permohonan Lulus" textcolor="green" bgcolor="green" value="{{ ($postspass->count()) }}"/>
                 <x-card.card-info title="Bil Permohonan Dalam Proses" textcolor="red" bgcolor="red" value="{{ ($postsfail->count()) }}"/>

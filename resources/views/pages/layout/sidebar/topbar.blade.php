@@ -10,7 +10,7 @@
             </svg>
         </button>
         <!-- Search input -->
-        <div class="font-bold text-sm sm:text-lg text-center mx-2">
+        <div class="font-bold text-xs sm:text-lg text-center mx-2">
             CAWANGAN : {{ session()->get('authenticatedUser')['branch_name'] }}
         </div>
         <ul class="flex items-center flex-shrink-0 space-x-6">
