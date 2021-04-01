@@ -9,7 +9,7 @@
 					<x-card.card-bg  
 						route="{{ route('emandate.dashboard') }}" 
 						img="{{asset('img/emandate.jpg')}}" 
-						title="E-Mandate"
+						title="e-Mandate"
 					/>
 				</x-general.grid>
 			</div>

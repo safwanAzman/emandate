@@ -19,7 +19,7 @@
                                     {{ $item->filename }}
                                 </x-table.table-body>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                                    {{ substr($item->hdate,0,4).'-'.substr($item->hdate,4,2).'-'.substr($item->hdate,6,2) }}  
+                                    {{ substr($item->hdate,6,2).'-'.substr($item->hdate,4,2).'-'.substr($item->hdate,0,4) }}  
                                 </x-table.table-body>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     <a href = "{{ url('linkmainCFT/'.$item->filename.'')}}" 
