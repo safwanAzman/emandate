@@ -49,7 +49,7 @@
                             <div class="text-sm font-bold text-gray-700 tracking-wide">ID Pengguna</div>
                             <input
                                 class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                                type="" placeholder="Tekun Nasional" id="idpengguna" name="idpengguna">
+                                type="" placeholder="TEKUN Nasional" id="idpengguna" name="idpengguna">
                         </div>
                         <div class="mt-8">
                             <div class="flex justify-between items-center">
@@ -59,7 +59,7 @@
                             </div>
                             <input
                                 class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                                type="password" placeholder="*****" id="katalaluan" name="katalaluan">
+                                type="password" placeholder="******" id="katalaluan" name="katalaluan">
                         </div>
                         <div class="mt-10">
                             <button class="transition duration-500 bg-white hover:bg-blue-500 text-blue-400 p-4 w-full rounded-full tracking-wide
