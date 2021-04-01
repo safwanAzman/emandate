@@ -40,7 +40,7 @@
           <div class="bg-white shadow-lg p-4 rounded-lg">
             <div class="">
               <p class="text-lg font-semibold">Jumlah Potongan</p>
-              <p>{{ substr($item->debitamt,11,3) }}</p>
+              <p>{{ number_format(substr($item->debitamt,8,6)) }}</p>
             </div>
           </div>
           <div class="bg-white shadow-lg p-4 rounded-lg">
@@ -52,7 +52,7 @@
           <div class="bg-white shadow-lg p-4 rounded-lg">
             <div class="">
               <p class="text-lg font-semibold">Status</p>
-              <p>{{ $item->approval }}</p>
+              <p>{{ $item->approval_desc }}</p>
             </div>
           </div>
           <div class="bg-white shadow-lg p-4 rounded-lg">

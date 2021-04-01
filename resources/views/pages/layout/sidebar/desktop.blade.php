@@ -28,13 +28,13 @@
                                 </x-slot>
                             </x-sidebar.dropdown-item>
 
-                            <x-sidebar.dropdown-item title="ENRP" href="{{ route('searchenrp.index') }}" uri="emandate/search_mainenrp">
+                            <x-sidebar.dropdown-item title="FAIL BERJAYA DAFTAR (ENRP)" href="{{ route('searchenrp.index') }}" uri="emandate/search_mainenrp">
                                 <x-slot name="icon">
                                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
                                 </x-slot>
                             </x-sidebar.dropdown-item>
 
-                            <x-sidebar.dropdown-item title="CFT" href="{{ route('searchcft.index') }}" uri="emandate/search_cftlist">
+                            <x-sidebar.dropdown-item title="FAIL DIHANTAR KE BANK (CFT)" href="{{ route('searchcft.index') }}" uri="emandate/search_cftlist">
                                 <x-slot name="icon">
                                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
                                 </x-slot>

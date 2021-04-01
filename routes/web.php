@@ -80,7 +80,9 @@ Route::middleware([AuthenticatedUser::class])->group(function() {
       /* for CFT */
       Route::get('emandate/search_cftlist', 'searchCFTController@index')->name('searchcft.index');
       Route::resource('linkmainCFT','CFTController');
-      Route::resource('linkcft','CFTControllerDetails');
+      //Route::resource('linkcft','CFTControllerDetails');
+      Route::get('linkcft','CFTControllerDetails@index')->name('linkcft.index');
+      Route::get('linkcft/{id}/{file}','CFTControllerDetails@show')->name('linkcft.show');
       //Route::get('/linkmainCFT/{id}', 'CFTController@index')->name('linkcft.index');
     
       /* For ENRP */
