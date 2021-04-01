@@ -47,10 +47,12 @@ class CFTControllerDetails extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$file)
     {
 
-        $CFT_details = MDT_TFC::where('ic','like','%'.$id.'%')->paginate(10);  //whereStatus(00)
+        $CFT_details = MDT_TFC::where('ic','like','%'.$id.'%')
+                                ->where('filename', $file)
+                                ->paginate(10);  //whereStatus(00)
         //   dd($CFT_details);
         
         return view('pages.CFTFileListDetails',compact('CFT_details'));

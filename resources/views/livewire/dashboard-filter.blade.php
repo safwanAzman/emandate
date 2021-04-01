@@ -54,7 +54,7 @@
                         <x-table.table-header class="text-left" value="Nama" sort=""/>
                         <x-table.table-header class="text-left" value="Mula E-mandate" sort=""/>
                         <x-table.table-header class="text-left" value="Tamat E-mandate" sort=""/>
-                        <x-table.table-header class="text-left" value="Status" sort=""/>
+                        {{-- <x-table.table-header class="text-left" value="Status" sort=""/> --}}
                     </x-slot>
                     <x-slot name="tbody">
                         @foreach ($postsdata as $item)
@@ -80,9 +80,9 @@
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ substr($item->expdate,0,2).'/'.substr($item->expdate,2,2).'/'.substr($item->expdate,4,4) }}
                                 </x-table.table-body>
-                                <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
+                                {{-- <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ $item->approval }}
-                                </x-table.table-body>
+                                </x-table.table-body> --}}
                             </tr>
                         @endforeach
                     </x-slot>
