@@ -1,6 +1,6 @@
 <div class="container px-6 mx-auto grid">
     <div class="rounded-lg main-content flex-1 bg-gray-50 mt-12 md:mt-2 pb-24 md:pb-5">
-        <x-general.title-header title="Senarai E-mandate Info" />
+        <x-general.title-header title="Senarai e-Mandate Info" />
         <div class="container">
             <div class="flex justify-start p-4 max-w-md">
                 <x-form.search-input label="Carian No Akaun/Kad Pengenalan" wire:model="searchTerm"/>

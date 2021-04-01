@@ -1,9 +1,9 @@
 <div class="container px-6 mx-auto grid">
     <div class="rounded-lg main-content flex-1 bg-gray-50 mt-12 md:mt-2 pb-24 md:pb-5">
-        <x-general.title-header title="Senarai Nama Fail Berajaya Daftar (ENRP)" />
+        <x-general.title-header title="Senarai Nama Fail Berjaya Daftar (ENRP)" />
         <div class="container">
             <div class="flex justify-start p-4 max-w-md">
-                <x-form.search-input label="Carian Tarikh Transaksi" wire:model="searchlistenrp"/>
+                <x-form.search-input label="Carian Tarikh Transaksi (Contoh : 04032021)" wire:model="searchlistenrp"/>
             </div>
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-6 px-6">
                 <x-table.table>
