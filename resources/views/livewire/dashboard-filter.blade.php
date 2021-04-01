@@ -1,6 +1,6 @@
 <div class="container px-6 mx-auto grid">
     <div class="rounded-lg main-content flex-1 bg-gray-50 ">			
-        <x-general.title-header title="E-Mandate Dashboard"/>
+        <x-general.title-header title="e-Mandate Dashboard"/>
         @if ( session()->get('authenticatedUser')['branch_type'] == 'HQ' )
         <div class="container bg-white ">
             <x-general.grid mobile="1" gap="5" sm="1" md="2" lg="2" xl="2" class="col-span-6 p-6">

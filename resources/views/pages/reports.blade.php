@@ -11,7 +11,7 @@
             <x-heroicon-o-document-text class="w-6 h-6" />
           </x-card.card-icon> 
 
-          <x-card.card-icon title="Laporan Transaksi Lulus" color="green" route="{{ route('report.respass') }}">
+          <x-card.card-icon title="Laporan Transaksi Berjaya" color="green" route="{{ route('report.respass') }}">
             <x-heroicon-o-document-text class="w-6 h-6" />
           </x-card.card-icon> 
 

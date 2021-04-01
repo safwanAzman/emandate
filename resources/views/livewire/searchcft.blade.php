@@ -3,7 +3,7 @@
         <x-general.title-header title="Senarai Nama Fail Dihantar Ke Bank (CFT)" />
         <div class="container">
             <div class="flex justify-start p-4 max-w-md">
-                <x-form.search-input label="Carian Tarikh Transaksi"  wire:model="searchCFTTerm"/>
+                <x-form.search-input label="Carian Tarikh Transaksi (Contoh : 25032021)"  wire:model="searchCFTTerm"/>
             </div>
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-6 px-6">
                 <x-table.table>

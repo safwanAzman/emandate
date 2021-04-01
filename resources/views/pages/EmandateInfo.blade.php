@@ -4,14 +4,35 @@
 <main class="h-full">
 	<div class="container px-6 mx-auto grid">
 		<div class="rounded-lg main-content flex-1 bg-gray-50 mt-12 md:mt-2 pb-24 md:pb-5">			
-			<x-general.title-header title="Info E-Mandate"/>
+			<x-general.title-header title="Info E-Mandate"/> 
 
 			<div class="container bg-white">
-				<x-general.grid mobile="1" gap="1" sm="3" md="3" lg="3" xl="3" class="col-span-6 py-4 px-4">
+				<x-general.grid mobile="1" gap="1" sm="2" md="2" lg="3" xl="3" class="col-span-6 py-4 px-4">
 					@foreach ($INFOS as $item)
-						<x-form.input type="text" label="No Akaun" value="{{ $item->fms_acct_no }}" readonly/>
-						<x-form.input type="text" label="Kad Pengenalan" value="{{ $item->idnum }}" readonly/>
-						<x-form.input type="text" label="Nama Usahawan" value="{{ $item->buyername }}" readonly/>
+						<div>
+							<label class="block text-sm font-semibold leading-5 text-gray-700 ">
+								No Akaun
+							</label>
+							<div class="border-2 py-1 px-1 rounded-md text-sm">
+								<p>{{ $item->fms_acct_no }}</p>
+							</div>
+						</div>
+						<div>
+							<label class="block text-sm font-semibold leading-5 text-gray-700 ">
+								Kad Pengenalan
+							</label>
+							<div class="border-2 py-1 px-1 rounded-md text-sm">
+								<p>{{ $item->idnum }}</p>
+							</div>
+						</div>
+						<div>
+							<label class="block text-sm font-semibold leading-5 text-gray-700 ">
+								Nama Usahawan
+							</label>
+							<div class="border-2 py-1 px-1 rounded-md text-sm">
+								<p>{{ $item->buyername }}</p>
+							</div>
+						</div>
 					@endforeach
 				</x-general.grid>
 			</div>
