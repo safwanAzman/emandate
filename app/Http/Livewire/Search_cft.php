@@ -33,7 +33,9 @@ class Search_cft extends Component
                 'cftdata' => MDT_TFC::select('filename','hdate')
                             //->where('filename','like', $searchCFTTerm)
                             ->where('hdate','like', $searchCFTTerm)
-                            ->groupBy('filename','hdate')->get()
+                            ->orderBy('filename', 'desc')
+                            ->groupBy('filename','hdate')
+                            ->get()
             
             ]);
         }
