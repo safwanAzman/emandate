@@ -60,7 +60,7 @@
                         @foreach ($postsdata as $item)
                             <tr>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                                    {{ ($item->hcrdate) }}
+                                    {{ substr($item->hcrdate,0,2). '/' .substr($item->hcrdate,2,2). '/' .substr($item->hcrdate,4,4) }}
                                 </x-table.table-body>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ ($item->branch_name) }}
