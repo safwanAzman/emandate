@@ -50,6 +50,7 @@ class DashboardFilter extends Component
                             'MDT_PRNE.APPROVAL')
                                 ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                                 ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
+                            ->orderBy('filename', 'desc')
                             ->paginate(5);
 
                 $daftar = MDT_PRNE::select( 'BRANCHES.BRANCH_CODE','BRANCHES.STATE_CODE', 'BRANCHES.BRANCH_NAME', 'MDT_PRNE.HCRDATE', 'MDT_PRNE.PAYREFNUM',
@@ -99,7 +100,7 @@ class DashboardFilter extends Component
                 ->where('BRANCHES.STATE_CODE',  $selected_state)
                     ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                     ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
-                   //->get();
+                ->orderBy('filename', 'desc')   
                 ->paginate(5);
 
                 $daftar = MDT_PRNE::select( 'BRANCHES.BRANCH_CODE','BRANCHES.STATE_CODE', 'BRANCHES.BRANCH_NAME', 'MDT_PRNE.HCRDATE', 'MDT_PRNE.PAYREFNUM',
@@ -142,6 +143,64 @@ class DashboardFilter extends Component
                 
                 ]);
             }
+            
+            //if($selected_state!=='All' && $selected_branch !== 'All'){
+            else if($selected_state !== 'Malay' && $selected_branch !== 'All'){
+
+                $daftardata = MDT_PRNE::select( 'BRANCHES.BRANCH_CODE','BRANCHES.STATE_CODE', 'BRANCHES.BRANCH_NAME', 'MDT_PRNE.HCRDATE', 'MDT_PRNE.PAYREFNUM',
+                'MDT_PRNE.IDNUM', 'MDT_PRNE.BUYERNAME', 'MDT_PRNE.PURPOSE', 'MDT_PRNE.EFFDATE', 'MDT_PRNE.EXPDATE',
+                'MDT_PRNE.APPROVAL')
+                ->where('BRANCHES.STATE_CODE',  $selected_state)
+                ->where('BRANCHES.BRANCH_CODE',  $selected_branch)
+                    ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                    ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
+                ->orderBy('filename', 'desc')   
+                ->paginate(5);
+
+                $daftar = MDT_PRNE::select( 'BRANCHES.BRANCH_CODE','BRANCHES.STATE_CODE', 'BRANCHES.BRANCH_NAME', 'MDT_PRNE.HCRDATE', 'MDT_PRNE.PAYREFNUM',
+                            'MDT_PRNE.IDNUM', 'MDT_PRNE.BUYERNAME', 'MDT_PRNE.PURPOSE', 'MDT_PRNE.EFFDATE', 'MDT_PRNE.EXPDATE',
+                            'MDT_PRNE.APPROVAL')
+                    ->where('BRANCHES.STATE_CODE',  $selected_state)
+                    ->where('BRANCHES.BRANCH_CODE',  $selected_branch)
+                    ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                    ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
+                    ->get();
+                    
+                                
+                $lulus = MDT_PRNE::select( 'BRANCHES.BRANCH_CODE','BRANCHES.STATE_CODE', 'BRANCHES.BRANCH_NAME', 'MDT_PRNE.HCRDATE', 'MDT_PRNE.PAYREFNUM',
+                                    'MDT_PRNE.IDNUM', 'MDT_PRNE.BUYERNAME', 'MDT_PRNE.PURPOSE', 'MDT_PRNE.EFFDATE', 'MDT_PRNE.EXPDATE',
+                                    'MDT_PRNE.APPROVAL')
+                                    ->where('BRANCHES.STATE_CODE',  $selected_state)
+                                    ->where('BRANCHES.BRANCH_CODE',  $selected_branch)
+                                    ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                                    ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
+                                    ->where('MDT_PRNE.SECTION', 'BLOCK2')
+                                    ->get();
+
+                $gagal = MDT_PRNE::select( 'BRANCHES.BRANCH_CODE','BRANCHES.STATE_CODE', 'BRANCHES.BRANCH_NAME', 'MDT_PRNE.HCRDATE', 'MDT_PRNE.PAYREFNUM',
+                                    'MDT_PRNE.IDNUM', 'MDT_PRNE.BUYERNAME', 'MDT_PRNE.PURPOSE', 'MDT_PRNE.EFFDATE', 'MDT_PRNE.EXPDATE',
+                                    'MDT_PRNE.APPROVAL')
+                                        ->where('BRANCHES.STATE_CODE',  $selected_state)
+                                        ->where('BRANCHES.BRANCH_CODE',  $selected_branch)
+                                        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                                        ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
+                                        ->where('MDT_PRNE.SECTION', 'BLOCK1')
+                                        ->get();
+        
+                /* code '00' is not malaysian */
+                $countries = BNM_STATECODES::whereNotIn('code', ['00', '99'])->orderBy('code')->get();
+                //$countries = BNM_STATECODES::orderBy('code')->get();
+                
+                return view('livewire.dashboard-filter')->with([
+                    'countries'  => $countries,
+                    'posts' => $daftar,
+                    'postspass' => $lulus,
+                    'postsfail' => $gagal,
+                    'postsdata' => $daftardata,
+                
+                ]);
+            }
+
             else
             {
 
@@ -151,7 +210,7 @@ class DashboardFilter extends Component
                 ->where('BRANCHES.BRANCH_CODE',  $selected_branch)
                     ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                     ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
-                    //->get();
+                ->orderBy('filename', 'desc')
                 ->paginate(5);
                 
                 $daftar = MDT_PRNE::select( 'BRANCHES.BRANCH_CODE','BRANCHES.STATE_CODE', 'BRANCHES.BRANCH_NAME', 'MDT_PRNE.HCRDATE', 'MDT_PRNE.PAYREFNUM',
@@ -196,9 +255,6 @@ class DashboardFilter extends Component
             }//end if select cawangan all
 
 
-
-
-
         } //end if branchtype = hq
         else{
 
@@ -207,8 +263,8 @@ class DashboardFilter extends Component
             'MDT_PRNE.APPROVAL')
                 ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                 ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
-                //->get();
-                ->paginate(5);
+            ->orderBy('filename', 'desc')
+            ->paginate(5);
 
                 $daftar = MDT_PRNE::select( 'BRANCHES.BRANCH_CODE','BRANCHES.STATE_CODE', 'BRANCHES.BRANCH_NAME', 'MDT_PRNE.HCRDATE', 'MDT_PRNE.PAYREFNUM',
                                     'MDT_PRNE.IDNUM', 'MDT_PRNE.BUYERNAME', 'MDT_PRNE.PURPOSE', 'MDT_PRNE.EFFDATE', 'MDT_PRNE.EXPDATE',

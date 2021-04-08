@@ -75,7 +75,7 @@
         <div class="hidden lg:flex items-center justify-center bg-gradient-to-r from-blue-300 to-blue-700 flex-1 h-screen">
             <div class="">
                 <div class="hidden lg:flex items-center justify-center flex-none min-h-full">
-                    <img src="{{asset('assets/img/login.png')}}" class="w-4/5 h-3/5 shadow-lg animate__animated animate__fadeInRight">
+                    <img src="{{asset('assets/img/login-3.png')}}" class="w-auto h-3/5 shadow-lg animate__animated animate__fadeInRight">
                 </div>
             </div>
         </div>
