@@ -1,6 +1,13 @@
 <div class="container px-6 mx-auto grid">
     <div class="rounded-lg main-content flex-1 bg-gray-50 mt-12 md:mt-2 pb-24 md:pb-5">
-        <x-general.title-header title="Senarai Maklumat Berjaya Daftar (ENRP)" />
+        <div class="relative">
+            <x-general.title-header title="Senarai Maklumat Berjaya Daftar (ENRP)" />
+
+            <a href="{{ route('searchenrp.index')}}" class="text-blue-700 absolute top-0 right-0 mx-2 my-2 rounded-md bg-white py-1 px-1 flex items-center">
+                <x-heroicon-o-arrow-left class="w-5 h-5 mr-2" /> 
+                <p class="text-sm font-semibold">Kembali</p>
+            </a>
+        </div>
         <div class="container">
             <div class="flex justify-start p-4 max-w-md">
                 <x-form.search-input label="Carian No Akaun / No Kad Pengenalan" wire:model="listenrp"/>
@@ -58,9 +65,6 @@
                 </x-table.table>
                 {{ $filelist_ENRP->links() }}
             </x-general.grid>
-            <div class="flex flex-wrap justify-center mt-8">
-                <a href="/emandate/search_mainenrp" class="bg-gray-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg rounded hover:shadow">Back</a>
-            </div>
         </div>
     </div>
 </div>

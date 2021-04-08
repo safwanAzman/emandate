@@ -13,7 +13,7 @@
                 <x-table.table>
                     <x-slot name="thead">
                         <x-table.table-header class="text-left" value="Penerangan Status" sort="" />
-                        <x-table.table-header class="text-left" value="Kod Status" title="KOD STATUS FAIL YANG DITERIMA DARI BANK (RES)" sort="" />
+                        <x-table.table-header class="text-left tooltipbtn" value="Kod Status" data-title="KOD STATUS FAIL YANG DITERIMA DARI BANK (RES)" data-placement="right" sort="" />
                     </x-slot>
                     <x-slot name="tbody">
                         @foreach ($MDT_OFNI_DESC as $item) 
