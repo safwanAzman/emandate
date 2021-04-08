@@ -30,6 +30,7 @@
                                 </x-table.table-body>
                             </tr>
                         @endforeach
+                        {{-- {{$file_ENRP->link()}} --}}
                     </x-slot>
                 </x-table.table>
             </x-general.grid>
