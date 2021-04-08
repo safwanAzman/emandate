@@ -25,6 +25,9 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+      <script src="https://unpkg.com/@popperjs/core@2"></script>
+      <script src="https://unpkg.com/tippy.js@6"></script>
+
       <!-- modal css -->
       <!-- modal css -->
       <style>
@@ -135,5 +138,17 @@
       integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+      
+      <script>
+        tippy('.tooltipbtn', {
+              content:(reference)=>reference.getAttribute('data-title'),
+              onMount(instance) {
+                  instance.popperInstance.setOptions({
+                  placement :instance.reference.getAttribute('data-placement')
+                  });
+              },
+              allowHTML: true,
+          });
+      </script>
   @stack('js')
 </html>
