@@ -43,7 +43,7 @@ return [
     */
 
     'asset_url'  => null,
-    //'asset_url'  => "http://cscapps.net.my/newemandate",
+    //'asset_url'  => "http://fmsonline.tekun.gov.my/eMandateV2",
 
     /*
     |--------------------------------------------------------------------------

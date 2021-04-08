@@ -58,6 +58,9 @@
                 </x-table.table>
                 {{ $filelist_ENRP->links() }}
             </x-general.grid>
+            <div class="flex flex-wrap justify-center mt-8">
+                <a href="/emandate/search_mainenrp" class="bg-gray-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg rounded hover:shadow">Back</a>
+            </div>
         </div>
     </div>
 </div>

@@ -11,10 +11,10 @@
                         title="Tarikh Sekatan" 
                         value="{{ substr($item->hdate,0,2).'-'.substr($item->hdate,3,2).'-'.substr($item->hdate,6,5) }}">
 
-                        <a href="{{ url('linkrptresfailed/'.$item->filename.'')}}" class="rounded-full py-3 px-3 bg-orange-500 hover:bg-orange-400  flex items-center">
-                            <x-heroicon-o-eye class="w-5 h-5 text-white" />
+                        <a href="{{ url('linkrptresfailed/'.$item->filename.'')}}" title="Lihat" class="rounded-full py-3 px-3 bg-orange-500 hover:bg-orange-400  flex items-center">
+                            <x-heroicon-o-eye class="w-5 h-5 text-white"/>
                         </a>
-                        <a href="{{ route('export-resfail',['id' => $item->filename]) }}" class="rounded-full py-3 px-3 bg-green-700 hover:bg-green-600 flex items-center">
+                        <a href="{{ route('export-resfail',['id' => $item->filename]) }}" title="Muat Turun" class="rounded-full py-3 px-3 bg-green-700 hover:bg-green-600 flex items-center">
                             <x-heroicon-o-download class="w-5 h-5 text-white" />
                         </a>
                     </x-card.card-list>
@@ -26,6 +26,9 @@
                     </div>
                 @endforelse
             </x-general.grid>
+            <div class="flex flex-wrap justify-center mt-16">
+                <a href="/emandate/emandate-report" class="bg-gray-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg rounded hover:shadow">Back</a>
+            </div>
         </div>
     </div>
 </div>
