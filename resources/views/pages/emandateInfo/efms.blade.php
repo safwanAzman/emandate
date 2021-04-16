@@ -29,6 +29,58 @@ td{
 
     <!--Kedudukan Akaun content -->
     <x-tab.content name="0">
+        <div class="py-4 px-2">
+            <div class="flex space-x-2">
+                <p class="font-semibold">Status :</p>
+                @foreach ($trafik as $item)
+                
+                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-white text-xs">NOD</p>
+                    </span>
+
+                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-white text-xs">SMN</p>
+                    </span>
+
+                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-white text-xs">BNC</p>
+                    </span>
+                    
+                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-white text-xs">WSS</p>
+                    </span>
+
+                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-white text-xs">JDS</p>
+                    </span>
+
+                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-white text-xs">RAMCI</p>
+                    </span>
+
+                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-white text-xs">CTOS</p>
+                    </span>
+
+                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-white text-xs">PS</p>
+                    </span>
+
+                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-white text-xs">PS2.0</p>
+                    </span>
+
+                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-white text-xs">PHCCC</p>
+                    </span>
+
+                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-white text-xs">eMan</p>
+                    </span>
+                @endforeach
+
+            </div>
+        </div>
         <div style=" width:100%;" class="overflow-x-auto bg-gray-100 px-2 py-2">
             <table class="acct">
                 <tbody>
