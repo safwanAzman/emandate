@@ -11,6 +11,11 @@
       <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
 
       <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+      <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+      <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
+
       <!-- accordion -->
       <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 
@@ -25,8 +30,12 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+  
+
+
       <script src="https://unpkg.com/@popperjs/core@2"></script>
       <script src="https://unpkg.com/tippy.js@6"></script>
+
 
       <!-- modal css -->
       <!-- modal css -->
@@ -138,6 +147,12 @@
       integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+      <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+      <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-flash-1.6.4/b-html5-1.6.4/b-print-1.6.4/datatables.min.js"></script>
       
       <script>
         tippy('.tooltipbtn', {
