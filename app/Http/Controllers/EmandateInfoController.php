@@ -136,7 +136,8 @@ class EmandateInfoController extends Controller
                     //dd($data);
 
          //resit part
-        $resit_sql = DB::select(DB::raw("           
+        $resit_sql = DB::select(
+            DB::raw("           
                     SELECT 
                         RESIT_NO, 
                         ACCOUNT_NO, 
@@ -157,10 +158,12 @@ class EmandateInfoController extends Controller
                         FROM RESIT 
                         WHERE ACCOUNT_NO = '$id'
                     ORDER BY RESIT_DATE
-                    "));
+                    ")
+                );
 
-                    $resit = $resit_sql;
+                $resit = $resit_sql;
         // end resit part
+
 
         //trafik part
         $trafik_sql = DB::select(DB::raw("           
