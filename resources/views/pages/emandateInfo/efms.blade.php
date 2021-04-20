@@ -33,49 +33,45 @@ td{
             <div class="flex space-x-2">
                 <p class="font-semibold">Status :</p>
                 @foreach ($trafik as $item)
-                
-                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
-                        <p class="text-white text-xs">NOD</p>
+
+                    <span class="{{ $item->nod > 0 ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-900' }} font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-xs">NOD</p>
                     </span>
 
-                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
-                        <p class="text-white text-xs">SMN</p>
+                    <span class="{{ $item->saman > 0 ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-900' }} font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-xs">SMN</p>
                     </span>
 
-                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
-                        <p class="text-white text-xs">BNC</p>
+                    <span class="{{ $item->bankcrupt > 0 ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-900' }} font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-xs">BNC</p>
                     </span>
                     
-                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
-                        <p class="text-white text-xs">WSS</p>
+                    <span class="{{ $item->wss > 0 ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-900' }} font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-xs">WSS</p>
                     </span>
 
-                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
-                        <p class="text-white text-xs">JDS</p>
+                    <span class="{{ $item->jds > 0 ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-900' }} font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-xs">JDS</p>
                     </span>
 
-                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
-                        <p class="text-white text-xs">RAMCI</p>
+                    <span class="{{ $item->ramci > 0 ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-900' }} font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-xs">RAMCI</p>
                     </span>
 
-                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
-                        <p class="text-white text-xs">CTOS</p>
+                    <span class="{{ $item->ctos > 0 ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-900' }} font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-xs">CTOS</p>
                     </span>
 
-                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
-                        <p class="text-white text-xs">PS</p>
+                    <span class="{{ $item->ps1 == 'Y' ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-900' }} font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-xs">PS</p>
                     </span>
 
-                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
-                        <p class="text-white text-xs">PS2.0</p>
+                    <span class="{{ $item->phccc > 0 ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-900' }} font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-xs">PHCCC</p>
                     </span>
 
-                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
-                        <p class="text-white text-xs">PHCCC</p>
-                    </span>
-
-                    <span class="bg-orange-500 font-semibold px-2 py-1 rounded-full flex items-center">
-                        <p class="text-white text-xs">eMan</p>
+                    <span class="{{ $item->emandate > 0 ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-900' }} font-semibold px-2 py-1 rounded-full flex items-center">
+                        <p class="text-xs">eMan</p>
                     </span>
                 @endforeach
 
