@@ -1,6 +1,11 @@
 @extends('pages.layout.app')
 @section('content')
+<style>
+	table.dataTable.no-footer {
+			border-bottom: 1px solid #e2e8f0;
+		}
 
+</style>
 <main class="h-full">
 	<div class="container px-6 mx-auto grid">
 		<div class="rounded-lg main-content flex-1 bg-gray-50 mt-12 md:mt-2 pb-24 md:pb-5">	
@@ -132,5 +137,24 @@
 		</div>
 	</div>
 </main>
-
+@push('js')
+<script>
+    $(document).ready(function () {
+        let table = $('.data-table').DataTable({
+                "language": {
+                    "paginate": {
+                    "next": ">",
+                    "previous": "<",
+                    },
+                    "zeroRecords": "Tiada rekod",
+                },
+            "lengthChange": false,
+            "bFilter": false,
+            "bInfo": false,
+            "ordering": false,
+            responsive: true,
+        }).columns.adjust().responsive.recalc();
+    });
+</script>
+@endpush
 @endsection

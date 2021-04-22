@@ -234,38 +234,38 @@ td{
             <div class="-my-2 overflow-x-auto">
                 <div class="py-2 align-middle inline-block min-w-full">
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white">
-                        <table id="example" class="min-w-full divide-y divide-gray-200">
+                        <table class="data-table min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-800">
                                     <tr>
-                                        <th data-priority="1" class="uppercase text-xs text-white">No.Resit</th>
-                                        <th data-priority="2" class="uppercase text-xs text-white">Amaun Resit</th>
-                                        <th data-priority="3" class="uppercase text-xs text-white">Pegawai Kutipan</th>
-                                        <th data-priority="4" class="uppercase text-xs text-white">Tarikh Resit</th>
-                                        <th data-priority="5" class="uppercase text-xs text-white">No.Kelompok</th>
-                                        <th data-priority="6" class="uppercase text-xs text-white">Jenis Resit</th>
-                                        <th data-priority="7" class="uppercase text-xs text-white">No.Cek</th>
-                                        <th data-priority="8" class="uppercase text-xs text-white">Kod Bank</th>
-                                        <th data-priority="9" class="uppercase text-xs text-white">Key-In Officer</th>
-                                        <th data-priority="10" class="uppercase text-xs text-white">Tarikh Transaksi</th>
-                                        <th data-priority="11" class="uppercase text-xs text-white">Status Resit</th>
-                                        <th data-priority="12" class="uppercase text-xs text-white">Pengesahan</th>
+                                        <th data-priority="1" class="uppercase text-xs text-white text-left">No.Resit</th>
+                                        <th data-priority="2" class="uppercase text-xs text-white text-left">Amaun Resit</th>
+                                        <th data-priority="3" class="uppercase text-xs text-white text-left">Pegawai Kutipan</th>
+                                        <th data-priority="4" class="uppercase text-xs text-white text-left">Tarikh Resit</th>
+                                        <th data-priority="5" class="uppercase text-xs text-white text-left">No.Kelompok</th>
+                                        <th data-priority="6" class="uppercase text-xs text-white text-left">Jenis Resit</th>
+                                        <th data-priority="7" class="uppercase text-xs text-white text-left">No.Cek</th>
+                                        <th data-priority="8" class="uppercase text-xs text-white text-left">Kod Bank</th>
+                                        <th data-priority="9" class="uppercase text-xs text-white text-left">Key-In Officer</th>
+                                        <th data-priority="10" class="uppercase text-xs text-white text-left">Tarikh Transaksi</th>
+                                        <th data-priority="11" class="uppercase text-xs text-white text-left">Status Resit</th>
+                                        <th data-priority="12" class="uppercase text-xs text-white text-left">Pengesahan</th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
+                                <tbody class="bg-white divide-y-gray-900">
                                     @foreach ($resit as $item)
                                         <tr>
-                                            <td class="text-sm">{{$item->resit_no}}</td>
-                                            <td class="text-sm">{{number_format($item->resit_amount,2)}}</td>
-                                            <td class="text-sm">{{$item->collector}}</td>
-                                            <td class="text-sm">{{$item->resitdt}}</td>
-                                            <td class="text-sm">{{$item->bis_no}}</td>
-                                            <td class="text-sm">{{$item->type}} </td>
-                                            <td class="text-sm">{{$item->cheque_no}}</td>
-                                            <td class="text-sm">{{$item->cheque_bank_code}}</td>
-                                            <td class="text-sm">{{$item->officer_incharge}}</td>
-                                            <td class="text-sm">{{$item->trx_date}}</td>
-                                            <td class="text-sm">{{$item->status_resit}}</td>
-                                            <td class="text-sm">{{$item->vld_status}}</td>
+                                            <td class="text-sm text-left">{{$item->resit_no}}</td>
+                                            <td class="text-sm text-left">{{number_format($item->resit_amount,2)}}</td>
+                                            <td class="text-sm text-left">{{$item->collector}}</td>
+                                            <td class="text-sm text-left">{{$item->resitdt}}</td>
+                                            <td class="text-sm text-left">{{$item->bis_no}}</td>
+                                            <td class="text-sm text-left">{{$item->type}} </td>
+                                            <td class="text-sm text-left">{{$item->cheque_no}}</td>
+                                            <td class="text-sm text-left">{{$item->cheque_bank_code}}</td>
+                                            <td class="text-sm text-left">{{$item->officer_incharge}}</td>
+                                            <td class="text-sm text-left">{{$item->trx_date}}</td>
+                                            <td class="text-sm text-left">{{$item->status_resit}}</td>
+                                            <td class="text-sm text-left">{{$item->vld_status}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -277,23 +277,3 @@ td{
     </x-tab.content>
     <!--End Rekod Bayaran Balik -->
 </div>
-@push('js')
-<script>
-    $(document).ready(function () {
-        let table = $('#example').DataTable({
-                "language": {
-                    "paginate": {
-                    "next": ">>",
-                    "previous": "<<",
-                    },
-                    "zeroRecords": "Tiada rekod",
-                },
-            "lengthChange": false,
-            "bFilter": false,
-            "bInfo": false,
-            "ordering": false,
-            responsive: true,
-        }).columns.adjust().responsive.recalc();
-    });
-</script>
-@endpush
