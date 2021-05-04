@@ -48,7 +48,7 @@
           </div>
           <div class="bg-white shadow-lg p-4 rounded-lg">
             <div class="">
-              <p class="text-lg font-semibold">Jumlah Potongan</p>
+              <p class="text-lg font-semibold">Jumlah Potongan Maksimum</p>
               <p>{{ number_format(substr($item->debitamt,8,6)) }}</p>
             </div>
           </div>
@@ -66,13 +66,13 @@
           </div>
           <div class="bg-white shadow-lg p-4 rounded-lg">
             <div class="">
-              <p class="text-lg font-semibold">Tarikh Mula Arahan Potongan</p>
+              <p class="text-lg font-semibold">Tarikh Mula eMandate</p>
               <p>{{ substr($item->effdate,0,2).'-'.substr($item->effdate,2,2).'-'.substr($item->effdate,4,4) }}</p>
             </div>
           </div>
           <div class="bg-white shadow-lg p-4 rounded-lg">
             <div class="">
-              <p class="text-lg font-semibold">Tarikh Akhir Arahan Potongan</p>
+              <p class="text-lg font-semibold">Tarikh Akhir eMandate</p>
               <p>{{ substr($item->expdate,0,2).'-'.substr($item->expdate,2,2).'-'.substr($item->expdate,4,4) }}</p>
             </div>
           </div>

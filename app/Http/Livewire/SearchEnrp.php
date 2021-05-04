@@ -36,7 +36,7 @@ class SearchEnrp extends Component
                         ->get(),
                         //->paginate(10),
 
-                
+            
             ]);
         }
         else{

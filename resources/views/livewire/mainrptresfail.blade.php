@@ -15,7 +15,7 @@
             <x-general.grid mobile="1" gap="5" sm="2" md="2" lg="2" xl="2" class="col-span-6 px-6">
                 @forelse ($rpt_resfail as $item)
                     <x-card.card-list 
-                        title="Tarikh Sekatan" 
+                        title="Tarikh Transaksi Gagal" 
                         value="{{ substr($item->hdate,0,2).'-'.substr($item->hdate,3,2).'-'.substr($item->hdate,6,5) }}">
 
                         <a href="{{ url('linkrptresfailed/'.$item->filename.'')}}" title="Lihat" class="rounded-full py-3 px-3 bg-orange-500 hover:bg-orange-400  flex items-center">

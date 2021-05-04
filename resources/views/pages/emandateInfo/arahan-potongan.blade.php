@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <td class="px-4 py-4 border font-semibold">
-                Tarikh Mula Arahan Potongan
+                Tarikh Mula eMandate
             </td>
             <td class="px-4 py-4 border">
                 <div class="flex-grow">
@@ -39,7 +39,7 @@
         </tr>
         <tr>
             <td class="px-4 py-4 border font-semibold">
-                Tarikh Akhir Arahan Potongan
+                Tarikh Akhir eMandate
             </td>
             <td class="px-4 py-4 border">
                 <div class="flex-grow">
