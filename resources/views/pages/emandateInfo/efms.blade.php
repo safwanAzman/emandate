@@ -251,13 +251,13 @@ td{
                                         <th data-priority="12" class="uppercase text-xs text-white text-left">Pengesahan</th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y-gray-900">
+                                <tbody class="bg-white divide-y divide-gray-200">
                                     @foreach ($resit as $item)
                                         <tr>
                                             <td class="text-sm text-left">{{$item->resit_no}}</td>
                                             <td class="text-sm text-left">{{number_format($item->resit_amount,2)}}</td>
                                             <td class="text-sm text-left">{{$item->collector}}</td>
-                                            <td class="text-sm text-left">{{$item->resitdt}}</td>
+                                            <td class="text-sm text-left whitespace-no-wrap">{{$item->resitdt}}</td>
                                             <td class="text-sm text-left">{{$item->bis_no}}</td>
                                             <td class="text-sm text-left">{{$item->type}} </td>
                                             <td class="text-sm text-left">{{$item->cheque_no}}</td>

@@ -24,7 +24,7 @@
           </div>
           <div class="bg-white shadow-lg p-4 rounded-lg">
             <div class="">
-              <p class="text-lg font-semibold">No Akaun</p>
+              <p class="text-lg font-semibold">No. Akaun Bank</p>
               <p>{{ $item->accno }}</p>
             </div>
           </div>

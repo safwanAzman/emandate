@@ -20,7 +20,7 @@
             <td class="px-4 py-4 border">
                 <div class="flex-grow">
                     <div class="text-sm leading-5 text-gray-800">
-                        <p>{{ isset($item->lastcycle_date) ? date('d-m-Y',strtotime($item->nextcycle_date)):'' }}</p>
+                        <p>{{ isset($item->nextcycle_date) ? date('d-m-Y',strtotime($item->nextcycle_date)):'' }}</p>
                     </div>
                 </div>
             </td>

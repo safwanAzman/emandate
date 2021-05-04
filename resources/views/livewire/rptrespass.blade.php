@@ -10,7 +10,7 @@
         
         <div class="container">
             <div class="flex justify-start p-4 max-w-md">
-                <x-form.search-input label="Senarai Maklumat Laporan Transaksi (Berjaya)" wire:model="findrptrespass"/>
+                <x-form.search-input label="Carian No. Akaun / Kad Pengenalan" wire:model="findrptrespass"/>
             </div>
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-6 px-6">
                 <x-table.table>
