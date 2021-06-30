@@ -1,85 +1,111 @@
 @extends('pages.layout.base')
 @section('body')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Contact Form Template</title>
-    <link rel="stylesheet" href="/build/tailwind.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-</head>
+<style>
+    .input {
+        transition: border 0.2s ease-in-out;
+        min-width: 280px
+    }
 
-<body class>
-    <div class="lg:flex">
-        <div class="lg:w-1/2 xl:max-w-screen-sm">
-            <div class="py-4 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
-                <div class="cursor-pointer flex items-center">
-                    <div>
-                        <svg class="w-10 text-indigo-500" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px"
-                            viewBox="0 0 225 225" style="enable-background:new 0 0 225 225;" xml:space="preserve">
-                            <style type="text/css">
-                                .st0 {
-                                    fill: none;
-                                    stroke: currentColor;
-                                    stroke-width: 20;
-                                    stroke-linecap: round;
-                                    stroke-miterlimit: 3;
-                                }
-                            </style>
-                        </svg>
-                    </div>
-                    <!--logo-->
-                    <div class="flex font-bold justify-center mt-3">
-                        <img src="{{asset('assets/img/tekun-nasional-logo.png')}}" class="w-40 h-30 animate__animated animate__fadeInLeft">
-                    </div>
+    .input:focus+.label,
+    .input:active+.label,
+    .input.filled+.label {
+        font-size: .75rem;
+        transition: all 0.2s ease-out;
+        top: -0.1rem;
+        color: #667eea;
+    }
+
+    .label {
+        transition: all 0.2s ease-out;
+        top: 0.4rem;
+        left: 0;
+    }
+</style>
+
+<section class="relative flex flex-col md:flex-row h-screen  bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700">
+    <div class="absolute top-0 left-0 py-4 px-4 animate__animated animate__lightSpeedInLeft">
+        <h1 class="text-3xl text-blue-400 font-semibold">e<span class="text-white">-Mandate</span></h1>
+    </div>
+    <div
+        class="md:max-w-md lg:max-w-full md:mx-auto mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
+        <div class="animate__animated animate__zoomIn w-full h-100  py-8 px-4 ">
+            <div class="flex justify-center">
+                <div>
+                    <img src="{{asset('assets/img/tekun-nasional-logo.png')}}" class="w-64 h-64">
+                    <h2 class="mt-2 text-4xl font-semibold text-white text-center">
+                        Log Masuk
+                    </h2>
                 </div>
             </div>
-            <div class="mt-2 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-2 xl:px-24 xl:max-w-2xl animate__animated animate__fadeInUp">
-                <h2 class="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
-                xl:text-bold">Log Masuk<br>e-Mandate</h2>
-                <div class="mt-12">
-                    <form class="mt-8" action="{{ route('loggingin') }}" method="POST">
-                        @if(session()->has('loginerror'))
-                        <x-general.alert.base class="bg-red-200 border-2 border-red-300 rounded-md p-2 text-sm my-2">
-                            <x-slot name="message">{{ session()->get('loginerror') }}</x-slot>
-                        </x-general.alert.base>
-                        @endif
-                        @csrf
-                        <div>
-                            <div class="text-sm font-bold text-gray-700 tracking-wide">ID Pengguna</div>
-                            <input
-                                class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                                type="" placeholder="TEKUN Nasional" id="idpengguna" name="idpengguna">
-                        </div>
-                        <div class="mt-8">
-                            <div class="flex justify-between items-center">
-                                <div class="text-sm font-bold text-gray-700 tracking-wide">
-                                    Kata Laluan
-                                </div>
-                            </div>
-                            <input
-                                class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                                type="password" placeholder="******" id="katalaluan" name="katalaluan">
-                        </div>
-                        <div class="mt-10">
-                            <button class="transition duration-500 bg-white hover:bg-blue-500 text-blue-400 p-4 w-full rounded-full tracking-wide
-                            border border-blue-400 font-semibold font-display focus:outline-none focus:shadow-outlineshadow-lg
-                            hover:text-white" id="blogin" name="buttonlogin">
-                                Masuk
-                            </button>
-                        </div>
-                    </form>
+            <form class="mt-6 max-w-md mx-auto w-full" action="{{ route('loggingin') }}" method="POST">
+                @if(session()->has('loginerror'))
+                <x-general.alert.base class="bg-red-200 border-2 border-red-300 rounded-md p-2 text-sm my-2">
+                    <x-slot name="message">{{ session()->get('loginerror') }}</x-slot>
+                </x-general.alert.base>
+                @endif
+                @csrf
+                <div class="mb-6 relative">
+                    <input
+                        class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-blue-600 focus:outline-none active:outline-none active:border-blue-600"
+                        id="idpengguna" name="idpengguna" type="text" autofocus>
+                    <label for="email"
+                        class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base cursor-text">
+                        ID Pengguna
+                    </label>
                 </div>
-            </div>
-        </div>
-        <div class="hidden lg:flex items-center justify-center bg-gradient-to-r from-blue-300 to-blue-700 flex-1 h-screen">
-            <div class="">
-                <div class="hidden lg:flex items-center justify-center flex-none min-h-full">
-                    <img src="{{asset('assets/img/login-3.png')}}" class="w-auto h-3/5 shadow-lg animate__animated animate__fadeInRight">
+                <div class="mb-6 relative">
+                    <input
+                        class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-blue-600 focus:outline-none active:outline-none active:border-blue-600"
+                        id="katalaluan" name="katalaluan" type="password" autofocus>
+                    <label for="password"
+                        class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base  cursor-text">
+                        Kata Laluan
+                    </label>
                 </div>
-            </div>
+
+                <button type="submit" id="blogin" name="buttonlogin" class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-500 text-white font-semibold rounded-lg px-4 py-3 mt-6
+                    focus:outline-none">
+                    Masuk
+                </button>
+            </form>
         </div>
     </div>
 
-    <!-- end new laywout -->
-    @endsection
+    <div class="bg-white  hidden lg:block w-full md:w-1/2 xl:w-2/4 h-full bg-no-repeat bg-cover bg-center" style="border-top-left-radius: 10rem; border-bottom-left-radius: 10rem;
+        background-image: url(https://i.pinimg.com/originals/c2/65/46/c265462322417d3251f7f403c0ae5d7b.gif);">
+        <div class="flex justify-center items-center px-6 text-center font-semibold">
+            <div>
+                <img src="{{asset('img/bg.png')}}" class="w-auto" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var toggleInputContainer = function(input) {
+        if (input.value != "") {
+            input.classList.add('filled');
+        } else {
+            input.classList.remove('filled');
+        }
+    }
+    var labels = document.querySelectorAll('.label');
+    for (var i = 0; i < labels.length; i++) {
+        labels[i].addEventListener('click', function() {
+            this.previousElementSibling.focus();
+        });
+    }
+    window.addEventListener("load", function() {
+        var inputs = document.getElementsByClassName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener('keyup', function() {
+                toggleInputContainer(this);
+            });
+            toggleInputContainer(inputs[i]);
+        }
+    });
+</script>
+
+<!-- end new laywout -->
+@endsection
