@@ -1,11 +1,5 @@
 @foreach ($INFOS as $item)
 <div class="">
-    @if(session()->has('activestatus'))
-        <x-general.alert.base
-            class="border-2 bg-green-600 border-green-500 rounded-md p-2 text-sm text-white my-2">
-            <x-slot name="message">{{ session()->get('activestatus') }}</x-slot>
-        </x-general.alert.base>
-    @endif
     <form method="post" action="{{ route('EmandateInfo.activestatus') }}">
         @csrf
         <input type="hidden" name="itemid" value="{{ $item->idnum }}">
@@ -37,13 +31,25 @@
                         <div @click.away="show = false" class="z-50 relative p-3 mx-auto my-0 max-w-full"
                             style="width: 600px; margin-top:315px">
                             <div class="bg-white rounded shadow-lg border flex flex-col overflow-hidden">
-                                <div class="px-6 py-3 text-xl border-b font-bold">
-                                    Ulasan/Keterangan
+                                <div class="flex justify-between px-6 py-3 text-xl border-b font-bold">
+                                    <div class="">
+                                        Ulasan/Keterangan
+                                    </div>
+                                    <div class="flex space-x-2 text-blue-600" id="myDIV" style="visibility: hidden;">
+                                        <p>Sila tunggu sebentar </p>
+                                        <svg class="w-4 h-4 mb-2 mr-2 animate-spin" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line>
+                                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                            <line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line>
+                                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                        </svg>
+                                    </div>
                                 </div>
                                 <div class="p-6 flex-grow">
                                     <!-- text area -->
                                     <label class="block">
-                                        <textarea class="form-textarea mt-1 block w-full" rows="3"
+                                        <textarea class="form-textarea mt-1 block w-full" rows="3" id="myTextarea"
                                             placeholder="Ulasan Tidak boleh melebihi 100 patah perkataan. @error('reasons') is-invalid @enderror"
                                             name="reasons" maxlength="100" required>{{ old('reasons') }}</textarea>
                                     </label>
@@ -54,7 +60,7 @@
                                         <button @click={show=false} type="button"
                                             class="bg-gray-700 text-gray-100 rounded px-4 py-2 mr-1">Tutup</Button>
                                         <button @click={show=true} type="sumbit"
-                                            class="bg-blue-600 text-gray-200 rounded px-4 py-2">Simpan</Button>
+                                            class="bg-blue-600 text-gray-200 rounded px-4 py-2" onclick="loadingModal()">Simpan</Button>
                                     </div>
                                 </div>
                             </div>
@@ -94,12 +100,25 @@
                             style="width: 600px; margin-top:315px">
                             <div class="bg-white rounded shadow-lg border flex flex-col overflow-hidden">
                                 {{-- <button @click={show=false} class="fill-current h-6 w-6 absolute right-0 top-0 m-6 font-3xl font-bold"></button>  <!--&times;--> --}}
-                                <div class="px-6 py-3 text-xl border-b font-bold">
-                                    Ulasan/Keterangan</div>
+                                <div class="flex justify-between px-6 py-3 text-xl border-b font-bold items-center">
+                                    <div class="">
+                                        Ulasan/Keterangan
+                                    </div>
+                                    <div class="flex space-x-2 text-blue-600 font-semibold" id="myDIV" style="visibility: hidden;">
+                                        <p class="text-sm">Sila tunggu sebentar </p>
+                                        <svg class="w-5 h-5 mr-2 animate-spin" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line>
+                                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                            <line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line>
+                                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                        </svg>
+                                    </div>
+                                </div>
                                 <div class="p-6 flex-grow">
                                     <!-- text area -->
                                     <label class="block">
-                                        <textarea class="form-textarea mt-1 block w-full" rows="3"
+                                        <textarea class="form-textarea mt-1 block w-full" rows="3" id="myTextarea"
                                             placeholder="Ulasan Tidak boleh melebihi 100 patah perkataan. @error('reasons') is-invalid @enderror"
                                             name="reasons" maxlength="100" required>{{ old('reasons') }}</textarea>
                                     </label>
@@ -110,7 +129,7 @@
                                         <button @click={show=false} type="button"
                                             class="bg-gray-700 text-gray-100 rounded px-4 py-2 mr-1">Tutup</Button>
                                         <button @click={show=true} type="sumbit"
-                                            class="bg-blue-600 text-gray-200 rounded px-4 py-2">Simpan</Button>
+                                            class="bg-blue-600 text-gray-200 rounded px-4 py-2" onclick="loadingModal()">Simpan</Button>
                                     </div>
                                 </div>
                             </div>
@@ -179,3 +198,20 @@
     </tbody>
 </table>
 @endforeach
+@push('js')
+
+<script>
+    function loadingModal()  {
+        var x = document.getElementById("myDIV");
+        var y = document.getElementById("myTextarea");
+
+        if ($.trim(y.value) == '') {
+            x.style.visibility = "hidden";
+        }
+        else {
+            x.style.visibility = "visible";
+        }
+    }
+</script>
+    
+@endpush

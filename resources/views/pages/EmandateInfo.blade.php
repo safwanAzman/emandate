@@ -15,7 +15,7 @@
 					<x-heroicon-o-arrow-left class="w-5 h-5 mr-2" /> 
 					<p class="text-sm font-semibold">Kembali</p>
 				</a>
-			</div>		
+			</div>
 			
 			<div class="container bg-white">
 				<x-general.grid mobile="1" gap="1" sm="2" md="2" lg="3" xl="3" class="col-span-6 py-4 px-4">
@@ -47,6 +47,15 @@
 					@endforeach
 				</x-general.grid>
 			</div>
+
+			@if(session()->has('activestatus'))
+				<div class="px-5 pt-2">
+					<x-general.alert.base
+						class="border-2 bg-green-600 border-green-500 rounded-md p-2 text-sm text-white my-2">
+						<x-slot name="message">Status Sekatan Akaun Telah Dikemaskini</x-slot>
+					</x-general.alert.base>
+				</div>
+			@endif
 
 			<div class="container grid grid-cols-12 gap-3"  x-data="{ active: 0 }">
 
