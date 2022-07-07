@@ -1,9 +1,16 @@
 <div class="container px-6 mx-auto grid">
     <div class="rounded-lg main-content flex-1 bg-gray-50 mt-12 md:mt-2 pb-24 md:pb-5">
-        <x-general.title-header title="Senarai Maklumat Laporan Transaksi (Berjaya)" />
+        <div class="relative">
+            <x-general.title-header title="Senarai Maklumat Laporan Transaksi (Berjaya)" />
+            <a href="{{ route('report.respass')}}" class="text-blue-700 absolute top-0 right-0 mx-2 my-2 rounded-md bg-white py-1 px-1 flex items-center">
+                <x-heroicon-o-arrow-left class="w-5 h-5 mr-2" /> 
+                <p class="text-sm font-semibold">Kembali</p> 
+            </a>
+        </div>
+        
         <div class="container">
             <div class="flex justify-start p-4 max-w-md">
-                <x-form.search-input label="Senarai Maklumat Laporan Transaksi (Berjaya)" wire:model="findrptrespass"/>
+                <x-form.search-input label="Carian No. Akaun / Kad Pengenalan" wire:model="findrptrespass"/>
             </div>
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-6 px-6">
                 <x-table.table>

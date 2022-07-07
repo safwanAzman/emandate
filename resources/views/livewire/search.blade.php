@@ -1,4 +1,5 @@
 <div class="container px-6 mx-auto grid">
+    <x-minnor-loading/>
     <div class="rounded-lg main-content flex-1 bg-gray-50 mt-12 md:mt-2 pb-24 md:pb-5">
         <x-general.title-header title="Senarai e-Mandate Info" />
         <div class="container">
@@ -30,7 +31,7 @@
                                   {{ $item->approval_desc }}
                                 </x-table.table-body>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                                    <a href = "{{ url('linkviewsearch/'.$item->payrefnum.'')}}" 
+                                    <a onclick="loading()" href = "{{ url('linkviewsearch/'.$item->payrefnum.'')}}" 
                                         class="bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 rounded inline-flex items-center">
                                         <x-heroicon-o-eye class="w-5 h-5" />
                                         <p class="ml-1">Papar </p>

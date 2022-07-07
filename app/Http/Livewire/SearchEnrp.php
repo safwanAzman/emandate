@@ -34,9 +34,9 @@ class SearchEnrp extends Component
                         ->orderBy('filename','desc') 
                         ->groupBy('filename', 'hcrdate') 
                         ->get(),
-                        //->Paginate(10),
+                        //->paginate(10),
 
-                
+            
             ]);
         }
         else{

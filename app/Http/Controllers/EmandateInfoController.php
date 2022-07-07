@@ -136,7 +136,8 @@ class EmandateInfoController extends Controller
                     //dd($data);
 
          //resit part
-        $resit_sql = DB::select(DB::raw("           
+        $resit_sql = DB::select(
+            DB::raw("           
                     SELECT 
                         RESIT_NO, 
                         ACCOUNT_NO, 
@@ -157,12 +158,40 @@ class EmandateInfoController extends Controller
                         FROM RESIT 
                         WHERE ACCOUNT_NO = '$id'
                     ORDER BY RESIT_DATE
-                    "));
+                    ")
+                );
 
-                    $resit = $resit_sql;
+                $resit = $resit_sql;
         // end resit part
 
-        return view('pages.EmandateInfo',compact('INFOS','filelist_res','data','resit'));
+
+        //trafik part
+        $trafik_sql = DB::select(DB::raw("           
+                    
+                    SELECT resched2flag,
+                            nvl((select 1 from ramci_list where account_no = m.account_no),0) as ramci,
+                            nvl((select distinct 1 from owing_codes c, owings o where c.owingcatg = 'BN' and c.owing_code = o.owing_code
+                                and o.owing_amt > 0 and o.account_no = m.account_no),0) as bankcrupt,
+                            nvl((select sum(1) from owings o where owing_code in ('10','11') and o.owing_amt > 0 and o.account_no = m.account_no),0) as nod,
+                            nvl((select sum(1) from owing_codes c, owings o where c.owingcatg = 'SUM' and c.owing_code = o.owing_code
+                                and o.owing_amt > 0 and o.account_no = m.account_no),0) as saman, 
+                            nvl((select sum(1) from owing_codes c, owings o where c.owingcatg = 'WSS' and c.owing_code = o.owing_code
+                                and o.owing_amt > 0 and o.account_no = m.account_no),0) as wss,  
+                            nvl((select sum(1) from owing_codes c, owings o where c.owingcatg = 'JDS' and c.owing_code = o.owing_code
+                                and o.owing_amt > 0 and o.account_no = m.account_no),0) as jds,
+                        (case when substr(account_no,1,2) = '25' then 'Y' else 'N' end) as ps1,
+                        nvl((select 1 from ctos_list where account_no = m.account_no),0)  as ctos,
+                        nvl((select count(*) from FMS_USERCODES where CUST_ID = m.CUST_ID AND code = 'PHCCC'),0)  as phccc,
+                        nvl(emanflag,0) as emandate
+                    FROM	   account_master m
+                    WHERE account_no = '$id'
+                    
+                    "));
+
+                    $trafik = $trafik_sql;
+        // end trafik part
+
+        return view('pages.EmandateInfo',compact('INFOS','filelist_res','data','resit','trafik'));
         
         //account position part end
     }
