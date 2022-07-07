@@ -21,62 +21,53 @@ class Rptresfail extends Component
 
     public function render()
     {
-        $findrptresfail =  "%".$this->findrptresfail."%";
-        $idrptresfails =  "%".$this->idrptresfail."%";
+        $findrptresfail =  "%" . $this->findrptresfail . "%";
+        $idrptresfails =  "%" . $this->idrptresfail . "%";
 
+        $state_brn = session('authenticatedUser')['branch_type'];
         $state_user = session('authenticatedUser')['state_code'];
+        $branch_user = session('authenticatedUser')['branch_code'];
 
-        if ( $state_user == 00){
+        if ($state_brn == 'HQ') {
 
-            return view('livewire.rptresfail',[
+            return view('livewire.rptresfail', [
 
-            'rptdetails_resfail' => MDT_SER::where('filename','like', $idrptresfails)
-                                    ->join ('MDT_OFNI_DESC', 'MDT_SER.STATUS', '=', DB::raw("SUBSTR(MDT_OFNI_DESC.RE_CODE,2,3)"))
-                                    ->where('filler','like', $findrptresfail)
-                                    ->where('status','<>', '00')
-                                    ->paginate(10)                 
-                            
-            ]); 
+                'rptdetails_resfail' => MDT_SER::where('filename', 'like', $idrptresfails)
+                    ->join('MDT_OFNI_DESC', 'MDT_SER.STATUS', '=', DB::raw("SUBSTR(MDT_OFNI_DESC.RE_CODE,2,3)"))
+                    ->join('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("SUBSTR(MDT_SER.FILLER,1,14)"))
+                    ->join('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
+                    ->where('filler', 'like', $findrptresfail)
+                    ->where('status', '<>', '00')
+                    ->paginate(10)
+
+            ]);
+        } elseif ($state_brn == 'STA' && $state_user != '00') {
+            return view('livewire.rptresfail', [
+
+                'rptdetails_resfail' => MDT_SER::where('filename', 'like', $idrptresfails)
+                    ->join('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("SUBSTR(MDT_SER.FILLER,1,14)"))
+                    ->join('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
+                    ->join('MDT_OFNI_DESC', 'MDT_SER.STATUS', '=', DB::raw("SUBSTR(MDT_OFNI_DESC.RE_CODE,2,3)"))
+                    ->where('BRANCHES.STATE_CODE', '=',  $state_user)
+                    ->where('filler', 'like', $findrptresfail)
+                    ->where('status', '<>', '00')
+                    ->paginate(10)
+
+            ]);
+        } elseif ($state_brn == 'BRN' && $state_user != '00') {
+            return view('livewire.rptresfail', [
+
+                'rptdetails_resfail' => MDT_SER::where('filename', 'like', $idrptresfails)
+                    ->join('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("SUBSTR(MDT_SER.FILLER,1,14)"))
+                    ->join('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
+                    ->join('MDT_OFNI_DESC', 'MDT_SER.STATUS', '=', DB::raw("SUBSTR(MDT_OFNI_DESC.RE_CODE,2,3)"))
+                    // ->where('BRANCHES.STATE_CODE' , '=',  $state_user )
+                    ->where('BRANCHES.BRANCH_CODE', '=',  $branch_user)
+                    ->where('filler', 'like', $findrptresfail)
+                    ->where('status', '<>', '00')
+                    ->paginate(10)
+
+            ]);
         }
-        else{
-            return view('livewire.rptresfail',[
-
-                'rptdetails_resfail' => MDT_SER::where('filename','like', $idrptresfails)
-                                        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("SUBSTR(MDT_SER.FILLER,1,14)")  )
-                                        ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
-                                        ->join ('MDT_OFNI_DESC', 'MDT_SER.STATUS', '=', DB::raw("SUBSTR(MDT_OFNI_DESC.RE_CODE,2,3)"))
-                                        ->where('BRANCHES.STATE_CODE' , '=',  $state_user )
-                                        ->where('filler','like', $findrptresfail)
-                                        ->where('status','<>', '00')
-                                        ->paginate(10)                 
-                                
-                ]);
-        } 
-       /* 'rptdetails_resfail' => DB::table('MDT_SER')
-                           ->where('filename', 'like', $idrptresfails)
-                            ->where('filler', 'like', $findrptresfail)
-                            ->where('status', '<>' , '00')
-                            ->paginate(10) */ 
-
-         
-         /*'rptdetails_resfail' => MDT_SER::join ('MDT_OFNI_DESC','RES.STATUS' , '=', 'substr(REF.RE_CODE, 2, 3)')
-                               -> where('RES.filename','like', $idrptresfails)
-                                ->where('RES.filler','like', $findrptresfail)
-                                ->where('RES.status','<>', '00')
-                                ->paginate(10) */
-
-                        
-        /* 'rptdetails_resfail' => DB::table('MDT_SER')
-                           // ->join ('MDT_OFNI_DESC', 'MDT_SER.STATUS', '=', 'substr(MDT_OFNI_DESC.RE_CODE, 2, 3)') 
-                           ->join ('MDT_OFNI_DESC', 'MDT_SER.STATUS', '=', 'MDT_OFNI_DESC.RE_CODE') 
-                           ->where('MDT_SER.filename', 'like',  "'".$idrptresfails."'")
-                            ->where('MDT_SER.filler', 'like',  "'".$findrptresfail."'")
-                            ->where('MDT_SER.status', '<>' , '00')
-                            ->paginate(10)   */    
-                            
-    
-        
-    
     }
-
 }

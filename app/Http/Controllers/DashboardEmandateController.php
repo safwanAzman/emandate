@@ -23,7 +23,7 @@ class DashboardEmandateController extends Controller
         /* $state =  DB::table('MDT_PRNE')
                         ->select('BNM_STATECODES.description')
                         ->distinct()
-                        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                         ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                         ->join ('BNM_STATECODES',  'BRANCHES.STATE_CODE' , '=', 'BNM_STATECODES.CODE' )
                         ->get()
@@ -35,7 +35,7 @@ class DashboardEmandateController extends Controller
             /*$branch =  DB::table('MDT_PRNE')
                         ->select('BRANCHES.BRANCH_NAME')
                         ->distinct()
-                        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                         ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                         ->join ('BNM_STATECODES',  'BRANCHES.STATE_CODE' , '=', 'BNM_STATECODES.CODE' )
                         ->get()
@@ -66,7 +66,7 @@ class DashboardEmandateController extends Controller
                               ->get(); */
                    
                /* $post = DB::table('MDT_PRNE')
-                            ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                            ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                             ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                             ->join ('BNM_STATECODES',  'BRANCHES.STATE_CODE' , '=', 'BNM_STATECODES.CODE' )
                             ->where('BNM_STATECODES.description', $selected_state  )
@@ -77,7 +77,7 @@ class DashboardEmandateController extends Controller
                                 $query->where('BNM_STATECODES.description',  $selected_state)
                                     ->Where('BRANCHES.branch_name',  $selected_branch);})
                                     //->Where('MDT_PRNE.effdate',  $selected_transdate);})
-                                    ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                                    ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                                     ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                                     ->join ('BNM_STATECODES',  'BRANCHES.STATE_CODE' , '=', 'BNM_STATECODES.CODE' )
                                     ->get();           
@@ -85,7 +85,7 @@ class DashboardEmandateController extends Controller
                      // dump($post);     
                             
                /* $post_pass = DB::table('MDT_PRNE')
-                            ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                            ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                             ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                             ->join ('BNM_STATECODES',  'BRANCHES.STATE_CODE' , '=', 'BNM_STATECODES.CODE' )
                             ->where('MDT_PRNE.SECTION', 'BLOCK2')
@@ -99,7 +99,7 @@ class DashboardEmandateController extends Controller
                                 $query->where('BNM_STATECODES.description',  $selected_state)
                                     ->Where('BRANCHES.branch_name',  $selected_branch);})
                                     //->Where('MDT_PRNE.effdate',  $selected_transdate);})
-                                    ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                                    ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                                     ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                                     ->join ('BNM_STATECODES',  'BRANCHES.STATE_CODE' , '=', 'BNM_STATECODES.CODE' )
                                     ->where('MDT_PRNE.SECTION', 'BLOCK2')
@@ -111,7 +111,7 @@ class DashboardEmandateController extends Controller
                                         $query->where('BNM_STATECODES.description',  $selected_state)
                                             ->Where('BRANCHES.branch_name',  $selected_branch);})
                                             //->Where('MDT_PRNE.effdate',  $selected_transdate);})
-                                            ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                                            ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                                             ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                                             ->join ('BNM_STATECODES',  'BRANCHES.STATE_CODE' , '=', 'BNM_STATECODES.CODE' )
                                             ->where('MDT_PRNE.SECTION', 'BLOCK1')
@@ -141,21 +141,21 @@ class DashboardEmandateController extends Controller
             //dd($state_user);
         
             $daftarCount = DB::table('MDT_PRNE')
-                            ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                            ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                             ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                             ->where('BRANCHES.STATE_CODE' , '=',  $state_user )
                             ->get();
             //dd($daftarCount);               
 
             $lulusCount = DB::table('MDT_PRNE')
-                            ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                            ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                             ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                             ->where('BRANCHES.STATE_CODE' , '=',  $state_user )
                             ->where('MDT_PRNE.SECTION', '=', 'BLOCK2' )
                             ->get();
 
             $gagalCount = DB::table('MDT_PRNE')
-                            ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                            ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                             ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                             ->where('BRANCHES.STATE_CODE' , '=',  $state_user )
                             ->where('MDT_PRNE.SECTION', '=', 'BLOCK1' )

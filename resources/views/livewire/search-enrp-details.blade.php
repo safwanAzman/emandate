@@ -16,6 +16,7 @@
                 <x-table.table>
                     <x-slot name="thead">
                         <x-table.table-header class="text-left" value="Nama Fail" sort="" />
+                        <x-table.table-header class="text-left" value="Cawangan" sort="" />
                         <x-table.table-header class="text-left" value="No Akaun" sort="" />
                         <x-table.table-header class="text-left" value="Kad Pengenalan" sort="" />
                         <x-table.table-header class="text-left" value="Nama" sort="" />
@@ -30,6 +31,9 @@
                             <tr>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ substr($item->filename,0,8) }}
+                                </x-table.table-body>
+                                <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
+                                    {{ $item->branch_name }}
                                 </x-table.table-body>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ $item->payrefnum }}

@@ -24,12 +24,12 @@
 </style>
 
 <section class="relative flex flex-col md:flex-row h-screen  bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700">
-    <div class="absolute top-0 left-0 py-4 px-4 animate__animated animate__lightSpeedInLeft">
+    <div class="absolute top-0 left-0 py-4 px-4 animate_animated animate_lightSpeedInLeft">
         <h1 class="text-3xl text-blue-400 font-semibold">e<span class="text-white">-Mandate</span></h1>
     </div>
     <div
         class="md:max-w-md lg:max-w-full md:mx-auto mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
-        <div class="animate__animated animate__zoomIn w-full h-100  py-8 px-4 ">
+        <div class="animate_animated animate_zoomIn w-full h-100  py-8 px-4 ">
             <div class="flex justify-center">
                 <div>
                     <img src="{{asset('assets/img/tekun-nasional-logo.png')}}" class="w-64 h-64">
@@ -72,7 +72,7 @@
         </div>
     </div>
 
-    <div class="bg-white  hidden lg:block w-full md:w-1/2 xl:w-2/4 h-full bg-no-repeat bg-cover bg-center" style="border-top-left-radius: 10rem; border-bottom-left-radius: 10rem;
+    <div class="bg-white hidden lg:block w-full md:w-1/2 xl:w-2/4 h-full bg-no-repeat bg-cover bg-center" style="border-top-left-radius: 10rem; border-bottom-left-radius: 10rem;
         background-image: url(https://i.pinimg.com/originals/c2/65/46/c265462322417d3251f7f403c0ae5d7b.gif);">
         <div class="flex justify-center items-center px-6 text-center font-semibold">
             <div>

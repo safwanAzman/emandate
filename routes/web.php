@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthenticationUser;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,7 +44,9 @@ Route::middleware([AuthenticatedUser::class])->group(function() {
       Route::get('/emandate-lulusnegeri', 'LulusNegeriController@index')->name('listlulus');
       Route::get('/emandate-gagalnegeri', 'GagalNegeriController@index')->name('listgagal');
       /* dashboard emandate use livewire */
-      Route::get('emandate/emandate-dashboard', 'HomeController@index')->name('emandate.dashboard');
+      //Route::get('emandate/emandate-dashboard', 'HomeController@index')->name('emandate.dashboard');
+      Route::get('emandate-dashboard', 'HomeController@index')->name('emandate.dashboard');
+      Route::get('dwh-dashboard', 'HomeController@index')->name('dwh.dashboard');
       //Route::resource('/DashboardENRPAll','dashenrpController');
       
 
@@ -56,19 +59,21 @@ Route::middleware([AuthenticatedUser::class])->group(function() {
       Route::resource('linkrptenrp','RptENRPController'); 
       Route::get('exportenrp', 'RptENRPController@export')->name('export-ENRP');
      /* Report RES (failed) */
-       Route::get('/main-resfail-report', 'EmandateReportController@RESRptFail')->name('report.resfail');
-       Route::resource('linkrptresfailed','RptRESfailController'); 
-       Route::get('exportresfail', 'RptRESfailController@export')->name('export-resfail');
+      Route::get('/main-resfail-report', 'EmandateReportController@RESRptFail')->name('report.resfail');
+      Route::resource('linkrptresfailed','RptRESfailController'); 
+      Route::get('exportresfail', 'RptRESfailController@export')->name('export-resfail');
      /* Report RES (pass) */
-       Route::get('/main-respass-report', 'EmandateReportController@RESRptPass')->name('report.respass');
-       Route::resource('linkrptrespasses','RptRESpassController'); 
-       Route::get('exportrespass', 'RptRESpassController@export')->name('export-respass');
+      Route::get('/main-respass-report', 'EmandateReportController@RESRptPass')->name('report.respass');
+      Route::resource('linkrptrespasses','RptRESpassController');
+      Route::get('exportrespass', 'RptRESpassController@export')->name('export-respass');
      /* Report Hold (for all) */
-       Route::get('/main-holdall-report', 'EmandateReportController@RESRptHoldall')->name('report.holdall');
-       Route::resource('linkrptholdall','RptHoldAllController'); 
-       Route::get('exportholdall', 'RptHoldAllController@export')->name('export-holdall');
+      Route::get('/main-holdall-report', 'EmandateReportController@RESRptHoldall')->name('report.holdall');
+      Route::resource('linkrptholdall','RptHoldAllController'); 
+      Route::get('exportholdall', 'RptHoldAllController@export')->name('export-holdall');
+      
+      
 
-       
+      
       /* emandate_info */
       Route::get('emandate/search-box', 'searchController@index')->name('search.index');
       Route::get('/EmandateInfo', 'EmandateInfoController@index')->name('EmandateInfo.index');
@@ -77,18 +82,32 @@ Route::middleware([AuthenticatedUser::class])->group(function() {
       Route::get('emandate/RujukanKod', 'RujukanKodController@index')->name('RujukanKod.index');
       Route::get('exportkodrujukan', 'RujukanKodController@export')->name('export-kodRujukan');
 
+
+
+
+      Route::get('rpt-result', 'RptResultController@index')->name('rpt-result');
+
+
+
+
+      /* emandate_info_action */
+      Route::get('emandate/EmandateAction','EmandateAction@index') ->name('EmandateAction.index');
+
+
       /* for CFT */
       Route::get('emandate/search_cftlist', 'searchCFTController@index')->name('searchcft.index');
       Route::resource('linkmainCFT','CFTController');
       //Route::resource('linkcft','CFTControllerDetails');
       Route::get('linkcft','CFTControllerDetails@index')->name('linkcft.index');
       Route::get('linkcft/{id}/{file}','CFTControllerDetails@show')->name('linkcft.show');
+      Route::get('exportcft', 'CftExportController@export')->name('export-cft');
       //Route::get('/linkmainCFT/{id}', 'CFTController@index')->name('linkcft.index');
     
       /* For ENRP */
       Route::get('emandate/search_mainenrp', 'searchMainENRPController@index')->name('searchenrp.index');
       Route::resource('linkmainenrp','EmandateController');
       Route::resource('link','EmandateControllerDetails');
+      Route::get('exportenrp', 'EnrpExportController@export')->name('export-enrp');
       
     
 

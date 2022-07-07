@@ -17,42 +17,55 @@ class SearchEnrp extends Component
     public function render()
     {
 
-        $searchlistenrp =  "%".$this->searchlistenrp."%";
-        //$state_user = session('authenticatedUser')['state_code'];
+        $searchlistenrp =  "%" . $this->searchlistenrp . "%";
+        $state_brn = session('authenticatedUser')['branch_type'];
+        $state_user = session('authenticatedUser')['state_code'];
         $branch_user = session('authenticatedUser')['branch_code'];
         $branch_type = session('authenticatedUser')['branch_type'];
+        
 
+        if ($state_brn == 'HQ') {
 
-       /*  if ( $state_user == 00){ */
-        if ( $branch_type == 'HQ'){
-
-            return view('livewire.search-enrp',[
+            return view('livewire.search-enrp', [
 
                 'file_ENRP' => DB::table('MDT_PRNE')
-                        ->select(DB::raw('filename, hcrdate, count(*) as bil'))
-                        ->where('hcrdate', 'like', $searchlistenrp)
-                        ->orderBy('filename','desc') 
-                        ->groupBy('filename', 'hcrdate') 
-                        ->get(),
-                        //->paginate(10),
+                    ->distinct()
+                    ->select(DB::raw('filename, hcrdate'))
+                    ->where('hcrdate', 'like', $searchlistenrp)
+                    ->orderBy('filename', 'desc')
+                    ->paginate(10)
 
-            
             ]);
-        }
-        else{
-            return view('livewire.search-enrp',[
+        } elseif ($state_brn == 'STA' && $state_user != '00') {
+            return view('livewire.search-enrp', [
+
                 'file_ENRP' => DB::table('MDT_PRNE')
-                        ->select(DB::raw('filename, hcrdate, count(*) as bil'))
-                        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
-                        ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
-                        ->where('BRANCHES.BRANCH_CODE' , '=',  $branch_user )
-                        ->where('hcrdate', 'like', $searchlistenrp)
-                        ->groupBy('filename', 'hcrdate')
-                        ->get(),
+                    ->distinct()
+                    ->select(DB::raw('filename, hcrdate'))
+                    ->join('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)"))
+                    ->join('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
+                    ->where('BRANCHES.STATE_CODE', '=',  $state_user)
+                    ->where('hcrdate', 'like', $searchlistenrp)
+                    //->groupBy('filename', 'hcrdate')
+                    //->get()
+                    ->paginate(10)
+
+            ]);
+        } elseif ($state_brn == 'BRN' && $state_user != '00') {
+            return view('livewire.search-enrp', [
+
+                'file_ENRP' => DB::table('MDT_PRNE')
+                    ->distinct()
+                    ->select(DB::raw('filename, hcrdate'))
+                    ->join('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)"))
+                    ->join('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
+                    ->where('BRANCHES.BRANCH_CODE', '=',  $branch_user)
+                    ->where('hcrdate', 'like', $searchlistenrp)
+                    // ->groupBy('filename', 'hcrdate')
+                    //->get()
+                    ->paginate(10)
+
             ]);
         }
-
-
     }
 }
-

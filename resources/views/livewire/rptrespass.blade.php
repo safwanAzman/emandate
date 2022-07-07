@@ -16,6 +16,7 @@
                 <x-table.table>
                     <x-slot name="thead">
                         <x-table.table-header class="text-left" value="Tarikh Transaksi" sort="" />
+                        <x-table.table-header class="text-left" value="Cawangan" sort="" />
                         <x-table.table-header class="text-left" value="No Akaun" sort="" />
                         <x-table.table-header class="text-left" value="Kad Pengenalan" sort="" />
                         <x-table.table-header class="text-left" value="Jumlah Potongan" sort="" />
@@ -27,6 +28,9 @@
                             <tr>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ substr($item->hdate,0,2).'-'.substr($item->hdate,3,2).'-'.substr($item->hdate,6,5) }}
+                                </x-table.table-body>
+                                <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
+                                    {{ $item->branch_name }}
                                 </x-table.table-body>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ substr($item->filler,0,14) }}

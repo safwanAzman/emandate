@@ -12,21 +12,23 @@
 
                     {{-- START DASHBOARD --}}
                     <x-sidebar.nav-item title="DASHBOARD" route="{{ route('dashboard') }}" uri="/">
-                        <x-heroicon-o-chart-pie class="w-7 h-7" />
+                        <x-heroicon-o-chart-pie class="w-5 h-5" />
                     </x-sidebar.nav-item>
                     {{-- END DASHBOARD --}}
 
                     {{-- START EMANDED --}}
                     <x-sidebar.dropdown-nav-item active="open" title="e-MANDATE" uri="emandate/*">
                         <x-slot name="icon">
-                            <x-heroicon-o-archive class="w-7 h-7" />
+                            <x-heroicon-o-archive class="w-5 h-5" />
                         </x-slot>
                         <div class="leading-5">
+                            @if (session('authenticatedUser')['branch_code'] == '0009' || session('authenticatedUser')['branch_code'] == '0004' || session('authenticatedUser')['branch_code'] == '0016')
                             <x-sidebar.dropdown-item title="HOME" href="{{ route('emandate.dashboard') }}" uri="emandate/emandate-dashboard">
                                 <x-slot name="icon">
                                     <x-heroicon-o-home class="w-5 h-5" />
                                 </x-slot>
                             </x-sidebar.dropdown-item>
+                            @endif
 
                             <x-sidebar.dropdown-item title="FAIL BERJAYA DAFTAR (ENRP)" href="{{ route('searchenrp.index') }}" uri="emandate/search_mainenrp">
                                 <x-slot name="icon">
@@ -46,7 +48,21 @@
                                 </x-slot>
                             </x-sidebar.dropdown-item>
 
+                            @if (session('authenticatedUser')['branch_code'] == '0009' || session('authenticatedUser')['branch_code'] == '0004' || session('authenticatedUser')['branch_code'] == '0016')
+                            <x-sidebar.dropdown-item title="TINDAKAN SEKATAN" href="{{ route('EmandateAction.index') }}" uri="emandate/EmandateAction">
+                                <x-slot name="icon">
+                                    <x-heroicon-o-clipboard-list class="w-5 h-5" />
+                                </x-slot>
+                            </x-sidebar.dropdown-item>
+                            @endif
+
                             <x-sidebar.dropdown-item title="LAPORAN" href="{{ route('report.dashboard') }}" uri="emandate/emandate-report">
+                                <x-slot name="icon">
+                                    <x-heroicon-o-clipboard-list class="w-5 h-5" />
+                                </x-slot>
+                            </x-sidebar.dropdown-item>
+
+                            <x-sidebar.dropdown-item title="Laporan" href="{{ route('rpt-result') }}" uri="rpt-result">
                                 <x-slot name="icon">
                                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
                                 </x-slot>

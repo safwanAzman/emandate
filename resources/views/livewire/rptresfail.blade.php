@@ -15,7 +15,9 @@
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-6 px-6">
                 <x-table.table>
                     <x-slot name="thead">
+                        <x-table.table-header class="text-left" value="No" sort="" />
                         <x-table.table-header class="text-left" value="Tarikh Transaksi" sort="" />
+                        <x-table.table-header class="text-left" value="Cawangan" sort="" />
                         <x-table.table-header class="text-left" value="No Akaun" sort="" />
                         <x-table.table-header class="text-left" value="Kad Pengenalan" sort="" />
                         <x-table.table-header class="text-left" value="Jumlah Potongan" sort="" />
@@ -24,9 +26,14 @@
                     </x-slot>
                     <x-slot name="tbody">
                         @foreach ($rptdetails_resfail as $item) 
-                            <tr>
+                                <tr><x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
+                                    {{ (($rptdetails_resfail ->currentpage()-1) * $rptdetails_resfail ->perpage()) + $loop->index + 1 }} 
+                                </x-table.table-body>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ substr($item->hdate,0,2).'-'.substr($item->hdate,3,2).'-'.substr($item->hdate,6,5) }} 
+                                </x-table.table-body>
+                                <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
+                                    {{ $item->branch_name }}
                                 </x-table.table-body>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ substr($item->filler,0,14) }} 

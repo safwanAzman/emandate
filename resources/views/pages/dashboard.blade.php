@@ -11,6 +11,11 @@
 						img="{{asset('img/emandate.jpg')}}" 
 						title="e-Mandate"
 					/>
+					{{-- <x-card.card-bg  
+						route="{{ route('dwh.dashboard') }}" 
+						img="{{asset('img/emandate.jpg')}}" 
+						title="Data Warehouse"
+					/> --}}
 				</x-general.grid>
 			</div>
 		</div>

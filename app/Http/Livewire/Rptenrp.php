@@ -22,9 +22,14 @@ class Rptenrp extends Component
     public function render()
     {
         $findrptenrp =  "%".$this->findrptenrp."%";
-        $state_user = session('authenticatedUser')['state_code'];
 
-        if ( $state_user == 00){
+        $state_user = session('authenticatedUser')['state_code'];
+        $state_brn = session('authenticatedUser')['branch_type'];
+        $branch_user = session('authenticatedUser')['branch_code'];
+        $branch_type = session('authenticatedUser')['branch_type'];
+
+        if ($state_brn == 'HQ' && $state_user == '00'){
+            //dd($state_brn,$state_user);
             return view('livewire.rptenrp',[
 
                 'rptdetails_enrp' => MDT_PRNE::where('hcrdate','=', $this->idrptenrp)
@@ -39,7 +44,7 @@ class Rptenrp extends Component
             return view('livewire.rptenrp',[
 
                 'rptdetails_enrp' => MDT_PRNE::where('hcrdate','=', $this->idrptenrp)
-                                ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                                ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                                 ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                                 ->where('BRANCHES.STATE_CODE' , '=',  $state_user )
                                 ->where('payrefnum','like', $findrptenrp)
@@ -48,10 +53,7 @@ class Rptenrp extends Component
                     
             ]); 
         }
-
     
     }
-
-
 
 }

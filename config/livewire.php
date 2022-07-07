@@ -43,7 +43,7 @@ return [
     */
 
     'asset_url'  => null,
-    //'asset_url'  => "http://fmsonline.tekun.gov.my/eMandateV2",
+    //'asset_url'  => "/eMandateV2",
 
     /*
     |--------------------------------------------------------------------------

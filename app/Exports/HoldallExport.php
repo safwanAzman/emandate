@@ -53,9 +53,9 @@ class HoldallExport implements FromQuery,WithHeadings
 
             return  DB::table('MDT_OFNI')
             ->select('blockpayment_date','fms_acct_no','idnum','recnum','lastfailed_date','lastsuccess_date','blockedby','status_desc')
-            ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_OFNI.FMS_ACCT_NO)")  )
+            ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_OFNI.FMS_ACCT_NO)")  )
             ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
-            ->where('BRANCHES.STATE_CODE' , '=',  $branch_user )
+            ->where('BRANCHES.BRANCH_CODE' , '=',  $branch_user )
             ->where('blockpayment_date','like', "%".$this->idrptholdall."%")
             ->where('status_desc','=','ON-HOLD')
             ->orderby('fms_acct_no'); 

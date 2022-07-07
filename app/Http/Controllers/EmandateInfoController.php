@@ -9,6 +9,7 @@ use App\Models\MDT_SER;
 use Livewire\WithPagination;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class EmandateInfoController extends Controller
 
@@ -16,6 +17,7 @@ class EmandateInfoController extends Controller
     use WithPagination;
 
     public $listcft = '';
+    
     /**
      * Display a listing of the resource.
      *
@@ -72,56 +74,56 @@ class EmandateInfoController extends Controller
 
         //$listcft =  "%".$this->listcft."%";
 
-        $INFOS = MDT_OFNI::where('fms_acct_no','like','%'.$id.'%')->whereApproval('00')->paginate(5);
+        $INFOS = MDT_OFNI::where('fms_acct_no','like',$id)->whereApproval('00')->paginate(5);
         $filelist_res = MDT_SER::whereRaw("substr(filler,0,14) like '%".$id."%' and posted = 'Y' ORDER BY SUBSTR(HDATE,7,10),SUBSTR(HDATE,4,5),SUBSTR(HDATE,1,2) ASC")->paginate(20);
         //dd($id);
         
         //account position part
         $acc_pos = DB::select(DB::raw("
                     SELECT
-                    M.DURATION,
-                    TO_CHAR(M.START_INSTAL_DATE, 'dd-mm-yyyy') AS START_INSTAL_DATE, 
-                    M.PROFIT_RATE,     
-                    P.DISBURSED_AMOUNT ,
-                    P.TOT_PROFIT_UNEARNED ,
-                    M.SAVINGS_TO_PAID ,  
-                    M.APPROVED_LIMIT+P.TOT_PROFIT_UNEARNED+M.SAVINGS_TO_PAID AS TOTAL,
-                    P.UNDRAWN_AMOUNT,
-                    P.EXPIRY_DATE,
-                    M.START_INSTAL_DATE,
-                    P.DISBURSED_AMOUNT- P.COST_OUTSTANDING AMAUN_POKOK,
-                    NVL(P.TOT_PROFIT_EARNED,0) as TOT_PROFIT_EARNED,
-                    P.COST_OUTSTANDING,
-                    P.UEI_OUTSTANDING,
-                    P.BAL_OUTSTANDING + owing_amt as BAL_OUTSTANDING,
-                    NVL(P.REBATE_AMOUNT,0) AS REBATE_AMOUNT,
-                    NVL(P.SAVINGS_BALANCE,0) AS SAVINGS_BALANCE,
-                    EXCESS_PAYMENT,
-                    (CASE WHEN P.CREDIT_STATUS = 0 THEN 'CURRENT' WHEN P.CREDIT_STATUS = 1 THEN 'DELINQUENT' WHEN P.CREDIT_STATUS = 2 THEN 'SUB STANDARD' WHEN P.CREDIT_STATUS = 2 THEN 'DOUBTFUL' WHEN P.CREDIT_STATUS = 4 THEN 'BAD' END)AS CREDIT_STATUS1,
-                    UF_GET_CREADIT_STATUS(P.CREDIT_STATUS) AS CREDIT_STATUS,
-                    (case when P.NPF_STATUS = 'N' THEN 'PERFORMING' ELSE 'NON-PERFORMING' END) AS NPF_STATUS,
-                    P.INSTAL_ARREARS,
-                    NVL(P.SEC_DEP_IN_ARREAR,0) AS SEC_DEP_IN_ARREAR,
-                    P.CREDIT_STATUS_CHGDATE,           
-                    P.NPF_CHANGED_DATE,
-                    nvl((CASE WHEN INSTAL_MODE = 'M' THEN NVL(bulantgkbil,month_arrears) END),0) AS instal_mode,
-                    UF_GET_INSTALMODES(M.INSTAL_MODE) AS INSTMODE,
-                    P.BULANTGKBIL,
-                    NVL((SELECT SUM(OWING_AMT) FROM OWINGS WHERE OWING_CODE NOT IN (SELECT OWING_CODE FROM OWING_CODES WHERE AUTODEDUCT = 'Y') AND ACCOUNT_NO = P.ACCOUNT_NO),0) as total_owings,
-                    NVL((SELECT SUM(OWING_AMT_PAID) FROM OWINGS WHERE OWING_CODE NOT IN (SELECT OWING_CODE FROM OWING_CODES WHERE AUTODEDUCT = 'Y') AND ACCOUNT_NO = P.ACCOUNT_NO),0) as owings_paid,
-                    P.OWING_AMT,
-                    sec_dep_in_arrear+owing_amt+instal_arrears as amount_arrears,
-                    NVL(P.LAST_PYMT_AMT,0) AS LAST_PYMT_AMT,
-                    P.LAST_PAYMENT_DATE,
-                    P.INSTALMENT_NO,
-                    P.LAST_INSTAL_DATE,
-                    NVL(P.PAYMENT_AMOUNT,0) AS PAYMENT_AMOUNT,
-                    P.LAST_INSTAL_DUE_DATE,
-                    P.INSTAL_DUE_DATE,
-                    P.LAST_MODIFIED_DATE,
-                    P.LAST_MODIFIED_USER,
-                    (M.instal_amount + M.savings_instamt) AS INSTALL_AMT,
-                    START_INSTAL_DATE
+                        M.DURATION,
+                        TO_CHAR(M.START_INSTAL_DATE, 'dd-mm-yyyy') AS START_INSTAL_DATE, 
+                        M.PROFIT_RATE,     
+                        P.DISBURSED_AMOUNT ,
+                        P.TOT_PROFIT_UNEARNED ,
+                        M.SAVINGS_TO_PAID ,  
+                        M.APPROVED_LIMIT+P.TOT_PROFIT_UNEARNED+M.SAVINGS_TO_PAID AS TOTAL,
+                        P.UNDRAWN_AMOUNT,
+                        P.EXPIRY_DATE,
+                        M.START_INSTAL_DATE,
+                        P.DISBURSED_AMOUNT- P.COST_OUTSTANDING AMAUN_POKOK,
+                        NVL(P.TOT_PROFIT_EARNED,0) as TOT_PROFIT_EARNED,
+                        P.COST_OUTSTANDING,
+                        P.UEI_OUTSTANDING,
+                        P.BAL_OUTSTANDING + owing_amt as BAL_OUTSTANDING,
+                        NVL(P.REBATE_AMOUNT,0) AS REBATE_AMOUNT,
+                        NVL(P.SAVINGS_BALANCE,0) AS SAVINGS_BALANCE,
+                        EXCESS_PAYMENT,
+                        (CASE WHEN P.CREDIT_STATUS = 0 THEN 'CURRENT' WHEN P.CREDIT_STATUS = 1 THEN 'DELINQUENT' WHEN P.CREDIT_STATUS = 2 THEN 'SUB STANDARD' WHEN P.CREDIT_STATUS = 2 THEN 'DOUBTFUL' WHEN P.CREDIT_STATUS = 4 THEN 'BAD' END)AS CREDIT_STATUS1,
+                        UF_GET_CREADIT_STATUS(P.CREDIT_STATUS) AS CREDIT_STATUS,
+                        (case when P.NPF_STATUS = 'N' THEN 'PERFORMING' ELSE 'NON-PERFORMING' END) AS NPF_STATUS,
+                        P.INSTAL_ARREARS,
+                        NVL(P.SEC_DEP_IN_ARREAR,0) AS SEC_DEP_IN_ARREAR,
+                        P.CREDIT_STATUS_CHGDATE,           
+                        P.NPF_CHANGED_DATE,
+                        nvl((CASE WHEN INSTAL_MODE = 'M' THEN NVL(bulantgkbil,month_arrears) END),0) AS instal_mode,
+                        UF_GET_INSTALMODES(M.INSTAL_MODE) AS INSTMODE,
+                        P.BULANTGKBIL,
+                        NVL((SELECT SUM(OWING_AMT) FROM OWINGS WHERE OWING_CODE NOT IN (SELECT OWING_CODE FROM OWING_CODES WHERE AUTODEDUCT = 'Y') AND ACCOUNT_NO = P.ACCOUNT_NO),0) as total_owings,
+                        NVL((SELECT SUM(OWING_AMT_PAID) FROM OWINGS WHERE OWING_CODE NOT IN (SELECT OWING_CODE FROM OWING_CODES WHERE AUTODEDUCT = 'Y') AND ACCOUNT_NO = P.ACCOUNT_NO),0) as owings_paid,
+                        P.OWING_AMT,
+                        sec_dep_in_arrear+owing_amt+instal_arrears as amount_arrears,
+                        NVL(P.LAST_PYMT_AMT,0) AS LAST_PYMT_AMT,
+                        P.LAST_PAYMENT_DATE,
+                        P.INSTALMENT_NO,
+                        P.LAST_INSTAL_DATE,
+                        NVL(P.PAYMENT_AMOUNT,0) AS PAYMENT_AMOUNT,
+                        P.LAST_INSTAL_DUE_DATE,
+                        P.INSTAL_DUE_DATE,
+                        P.LAST_MODIFIED_DATE,
+                        P.LAST_MODIFIED_USER,
+                        (M.instal_amount + M.savings_instamt) AS INSTALL_AMT,
+                        START_INSTAL_DATE
                     FROM ACCOUNT_POSITION P,
                         ACCOUNT_MASTER M,
                         MDT_OFNI I
@@ -163,9 +165,8 @@ class EmandateInfoController extends Controller
 
                 $resit = $resit_sql;
         // end resit part
-
-
-        //trafik part
+		
+		 //trafik part
         $trafik_sql = DB::select(DB::raw("           
                     
                     SELECT resched2flag,
@@ -238,6 +239,8 @@ class EmandateInfoController extends Controller
 
             $info = MDT_OFNI::where('idnum', $request->itemid)->first();
 
+            $todayDate = Carbon::now();
+
             if ($request->action == 0) {
                 
                 $info->blocked_paymnt_status = ($request->action == 0) ? 0 : 1 ;
@@ -247,18 +250,52 @@ class EmandateInfoController extends Controller
                 $info->blockpayment_flag = 0;
                 $info->FAILEDCOUNT = 0;
                 $info->blocked_paymnt_status = 0;
+                $info->blockpayment_date = null;
+                $info->START_DATE = null;
+                $info->END_DATE = null;
                 $info->save();
                 
             }else{
 
-                $info->blocked_paymnt_status = ($request->action == 0) ? 0 : 1 ;
+                $start_dt = date('Y-m-15', strtotime($request['start_date']));
+                $end_mth = date('Y-m', strtotime($request['end_date']));
+                $end_mth_str = strtotime($end_mth);
+                $end_dt = date("Y-m-15", strtotime("+1 month", $end_mth_str));
+                //date('Y-m-15', strtotime($request['end_date']));
+                
+                $default_dt = '1970-01-15';
+                $default_end_dt = '1970-02-15';
+                $curr_month = now()->format('Y-m');
+
+                if($end_mth == $curr_month)
+                {
+                    $end_dt_str = strtotime($end_mth);
+                    $end_dt = date("Y-m-15", strtotime("+1 month", $end_dt_str));
+                }
+
+                if(($start_dt == $default_dt && $end_dt != $default_end_dt)){
+                    return redirect()->back()->with('alert', 'Sila pilih tarikh mula');
+                }
+                else if(($start_dt != $default_dt && $end_dt == $default_end_dt)){
+                    return redirect()->back()->with('alert', 'Sila pilih tarikh tarikh akhir');
+                }
+                else if(($start_dt == $default_dt) && ($end_dt == $default_end_dt)){
+                    $info->blocked_paymnt_status = ($request->action == 0) ? 0 : 1 ;
+                    $info->START_DATE = null;
+                    $info->END_DATE = null;
+                }
+                else{
+                    $info->blocked_paymnt_status = ($request->action == 0) ? 0 : 3 ;
+                    $info->START_DATE = $start_dt;
+                    $info->END_DATE = $end_dt;
+                }
                 $info->status_desc = ($request->action == 0) ? 'RE-ACTIVE' : 'ON-HOLD';
                 $info->blockedby = session()->get('authenticatedUser')['userid'];
                 $info->reasons = ($request->reasons);
                 $info->blockpayment_flag = 3;
                 $info->FAILEDCOUNT = 3;
-                $info->blocked_paymnt_status = 1;
-                // $info->blockpayment_date = date('Y-m-d');
+                //$info->blockpayment_date = date('Y-m-d');
+                $info->blockpayment_date = $todayDate;
                 $info->save();
                 
 

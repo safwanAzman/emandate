@@ -49,7 +49,7 @@
                 </div>
             </td>
         </tr>
-         <tr>
+        <tr>
             <td class="px-4 py-4 border font-semibold">
                 Skim
             </td>

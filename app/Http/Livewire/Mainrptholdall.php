@@ -16,12 +16,12 @@ class Mainrptholdall extends Component
     {
 
         $findmainrptholdall =  "%".$this->findmainrptholdall."%";
-       //$state_user = session('authenticatedUser')['state_code'];
-       $branch_user = session('authenticatedUser')['branch_code'];
-       $branch_type = session('authenticatedUser')['branch_type'];
+        $state_brn = session('authenticatedUser')['branch_type'];
+        $state_user = session('authenticatedUser')['state_code'];
+        $branch_user = session('authenticatedUser')['branch_code'];
 
        /* if ( $state_user == 00){ */
-       if ( $branch_type == 'HQ'){  
+        if ( $state_brn == 'HQ'){  
 
             return view('livewire.mainrptholdall',[
 
@@ -34,14 +34,31 @@ class Mainrptholdall extends Component
                             
             ]);
         }
-        else{
+
+        elseif ( $state_brn == 'STA' && $state_user != '00') {
             return view('livewire.mainrptholdall',[
 
                 'rpt_holdall' => DB::table('MDT_OFNI')
                             ->select(DB::raw('blockpayment_date, count(*) as bil'))
-                            ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_OFNI.FMS_ACCT_NO)")  )
+                            ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_OFNI.FMS_ACCT_NO)")  )
                             ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
-                            ->where('BRANCHES.STATE_CODE' , '=',  $branch_user )
+                            ->where('BRANCHES.STATE_CODE' , '=',   DB::raw($state_user) )
+                            ->where('blockpayment_date', 'like', $findmainrptholdall)
+                            ->groupBy('blockpayment_date')
+                            ->orderBy('blockpayment_date')
+                            ->get() 
+                            
+            ]);
+        }
+
+        elseif ( $state_brn == 'BRN' && $state_user != '00') {
+            return view('livewire.mainrptholdall',[
+
+                'rpt_holdall' => DB::table('MDT_OFNI')
+                            ->select(DB::raw('blockpayment_date, count(*) as bil'))
+                            ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_OFNI.FMS_ACCT_NO)")  )
+                            ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
+                            ->where('BRANCHES.BRANCH_CODE' , '=',  $branch_user )
                             ->where('blockpayment_date', 'like', $findmainrptholdall)
                             ->groupBy('blockpayment_date')
                             ->orderBy('blockpayment_date')

@@ -15,7 +15,7 @@ class LulusNegeriController extends Controller
 
         $lulusJhr = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '01')
         ->where('section','BLOCK2')
@@ -24,7 +24,7 @@ class LulusNegeriController extends Controller
 
         $lulusKdh = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '02')
         ->where('section','BLOCK2')
@@ -33,7 +33,7 @@ class LulusNegeriController extends Controller
 
         $lulusKltn = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '03')
         ->where('section','BLOCK2')
@@ -42,7 +42,7 @@ class LulusNegeriController extends Controller
 
         $lulusMlk = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '04')
         ->where('section','BLOCK2')
@@ -51,7 +51,7 @@ class LulusNegeriController extends Controller
 
         $lulusN9 = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '05')
         ->where('section','BLOCK2')
@@ -60,7 +60,7 @@ class LulusNegeriController extends Controller
 
         $lulusPhg = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '06')
         ->where('section','BLOCK2')
@@ -69,7 +69,7 @@ class LulusNegeriController extends Controller
 
         $lulusPrk = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '07')
         ->where('section','BLOCK2')
@@ -78,7 +78,7 @@ class LulusNegeriController extends Controller
 
         $lulusPrls = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '08')
         ->where('section','BLOCK2')
@@ -87,7 +87,7 @@ class LulusNegeriController extends Controller
 
         $lulusPP = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '09')
         ->where('section','BLOCK2')
@@ -96,7 +96,7 @@ class LulusNegeriController extends Controller
 
         $lulusSbh = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '10')
         ->where('section','BLOCK2')
@@ -105,7 +105,7 @@ class LulusNegeriController extends Controller
 
         $lulusSrwk = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '11')
         ->where('section','BLOCK2')
@@ -114,7 +114,7 @@ class LulusNegeriController extends Controller
 
         $lulusSlngr = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->whereIN('BRANCHES.STATE_CODE', ['12', '16'])
         ->where('section','BLOCK2')
@@ -123,7 +123,7 @@ class LulusNegeriController extends Controller
 
         $lulusTrg = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '13')
         ->where('section','BLOCK2')
@@ -132,7 +132,7 @@ class LulusNegeriController extends Controller
 
         $lulusKl = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '14')
         ->where('section','BLOCK2')

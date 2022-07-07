@@ -50,10 +50,10 @@ class ResFailExport implements FromQuery,WithHeadings
         else{
             return  DB::table('MDT_SER')
             ->select('hdate', DB::raw("SUBSTR(MDT_SER.FILLER,1,14)") ,'ic','tranamt','status','approved_desc')
-            ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("SUBSTR(MDT_SER.FILLER,1,14)")  )
+            ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("SUBSTR(MDT_SER.FILLER,1,14)")  )
             ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
             ->join ('MDT_OFNI_DESC', 'MDT_SER.STATUS', '=', DB::raw("SUBSTR(MDT_OFNI_DESC.RE_CODE,2,3)"))
-            ->where('BRANCHES.STATE_CODE' , '=',  $branch_user )
+            ->where('BRANCHES.BRANCH_CODE' , '=',  $branch_user )
             ->where('filename','like', "%".$this->idrptresfail."%")
             ->where('status','<>','00')
             ->orderby('filename');

@@ -7,9 +7,7 @@
 			<div class="container my-12 mx-auto px-4 md:px-12">
 				<x-general.grid mobile="1" gap="5" sm="1" md="2" lg="4" xl="4" class="col-span-6">
 
-          <x-card.card-icon title="Laporan Berjaya Daftar eMandate (ENRP)" color="blue" route="{{ route('report.enrp') }}">
-            <x-heroicon-o-document-text class="w-6 h-6" />
-          </x-card.card-icon> 
+          
 
           <x-card.card-icon title="Laporan Transaksi Berjaya" color="green" route="{{ route('report.respass') }}">
             <x-heroicon-o-document-text class="w-6 h-6" />
@@ -20,6 +18,10 @@
           </x-card.card-icon> 
 
           <x-card.card-icon title="Laporan Transaksi Gagal" color="red" route="{{ route('report.resfail') }}">
+            <x-heroicon-o-document-text class="w-6 h-6" />
+          </x-card.card-icon> 
+
+          <x-card.card-icon title="Laporan Transaksi Enrp" color="red" route="{{ route('report.enrp') }}">
             <x-heroicon-o-document-text class="w-6 h-6" />
           </x-card.card-icon> 
 

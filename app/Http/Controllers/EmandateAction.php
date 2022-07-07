@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\MDT_PRNE;
-class ListFileENRPController extends Controller
+use App\Models\MDT_OFNI;
 
-
+class EmandateAction extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +13,8 @@ class ListFileENRPController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-
-        /* could not use for pagination because of distinct() */
-        $file_ENRP = MDT_PRNE::distinct()-> get(['filename']);
-
-        return view('pages.mainENRP',compact('file_ENRP'));
-        
+    {
+        return view('pages.EmandateAction');
     }
 
     /**
@@ -52,21 +46,6 @@ class ListFileENRPController extends Controller
      */
     public function show($id)
     {
-        // $NERPS = MDT_PRNE::paginate(10);
-        // $NERPS = MDT_PRNE::find($id);
-       // $file_ENRP = MDT_PRNE::where('payrefnum','like','%'.$id.'%')->whereSection('BLOCK2')->paginate(5);
-      //  $file_ENRP = MDT_PRNE::distinct()-> get(['filename']) ->paginate(5);
-
-
-        // dd($file_ENRP);
-
-        // $file_ENRP = MDT_PRNE::where('payrefnum', '=', $NERPS)->whereOr()
-        //                 -> where(function ($query) {
-        //                     $query->where('section', '=', 'BLOCK2'); }) -> paginate(5);
-
-        //   dd($file_ENRP);
-        
-       // return view('pages.mainENRP',compact('file_ENRP'));
         
     }
 
@@ -104,4 +83,3 @@ class ListFileENRPController extends Controller
         //
     }
 }
-

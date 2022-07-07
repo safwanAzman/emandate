@@ -1,4 +1,5 @@
 <div class="container px-6 mx-auto grid">
+	<x-minnor-loading/>
     <div class="rounded-lg main-content flex-1 bg-gray-50 mt-12 md:mt-2 pb-24 md:pb-5">
         <div class="relative">
             <x-general.title-header title="Senarai Maklumat Fail Dihantar Ke Bank (CFT)" />
@@ -16,6 +17,7 @@
                 <x-table.table>
                     <x-slot name="thead">
                         <x-table.table-header class="text-left" value="Nama Fail" sort="" />
+                        <x-table.table-header class="text-left" value="Cawangan" sort="" />
                         <x-table.table-header class="text-left" value="No Akaun" sort="" />
                         <x-table.table-header class="text-left" value="Nama" sort="" />
                         <x-table.table-header class="text-left" value="Kad Pengenalan" sort="" />
@@ -28,6 +30,9 @@
                             <tr>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ substr($item->filename,0,11) }}
+                                </x-table.table-body>
+                                <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
+                                    {{ $item->branch_name }}
                                 </x-table.table-body>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ $item->payrefno }}
@@ -45,7 +50,7 @@
                                     {{ $item->noretry }}
                                 </x-table.table-body>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                                    <a href = "{{ url('linkcft/'.$item->ic.'/'.$item->filename)}}" 
+                                    <a href = "{{ url('linkcft/'.$item->ic.'/'.$item->filename)}}" onclick = "loading()"  
                                         class="bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 rounded inline-flex items-center">
                                         <x-heroicon-o-eye class="w-5 h-5" />
                                         <p class="ml-1">Papar </p>

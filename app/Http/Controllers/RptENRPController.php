@@ -9,10 +9,11 @@ use DateTime;
 
 class RptENRPController extends Controller
 {
+    public $mdt_hcrdate;
 
     public function index()
     {    
-           // $rpt_enrp = MDT_PRNE::whereApproval('00')->paginate(10);   
+            //$rpt_enrp = MDT_PRNE::where('Approval','00')->paginate(10);   
             return view('pages.reportenrp');
     }
 
@@ -25,12 +26,14 @@ class RptENRPController extends Controller
         //$test =MDT_PRNE::where('hcrdate','like','%'.$id.'%') ->where('approval','=','%00%');
         //dd($test);
 
-        //MDT_PRNE::where('hcrdate','=',$id)->whereApproval('00')
-        //$rpt_enrp = MDT_PRNE::where('hcrdate','=',$id)
-         //   ->where('approval','not like','%00%')->paginate(10);
+        $mdt_enrp =  MDT_PRNE::where('hcrdate','=',$id)->where('Approval','00');
+        $rpt_enrp = MDT_PRNE::where('hcrdate','=',$id)
+        ->where('approval','not like','%00%')->paginate(10);
 
-         return view('pages.reportenrp', compact('id'));
-       
+        $this->mdt_hcrdate = $mdt_enrp->hcrdate;
+        
+
+        return view('pages.reportenrp', compact('id'));
     }
     
     public function export(Request $request) 
@@ -39,7 +42,7 @@ class RptENRPController extends Controller
         $date_download = $date->format('dmy');
 
         //return Excel::download(new EnrpExport($request->id), 'EnrpData.xlsx');
-        return Excel::download(new EnrpExport($request->id), 'EnrpData_' . $date_download . '.xlsx');
+        return Excel::download(new EnrpExport($request->id), 'EnrpData_' . $this->mdt_hcrdate . '.xlsx');
     }
    
 }

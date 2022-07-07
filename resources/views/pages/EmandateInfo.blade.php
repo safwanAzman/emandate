@@ -18,7 +18,7 @@
 			</div>
 			
 			<div class="container bg-white">
-				<x-general.grid mobile="1" gap="1" sm="2" md="2" lg="3" xl="3" class="col-span-6 py-4 px-4">
+				<x-general.grid mobile="1" gap="1" sm="2" md="2" lg="4" xl="4" class="col-span-6 py-4 px-4">
 					@foreach ($INFOS as $item)
 						<div>
 							<label class="block text-sm font-semibold leading-5 text-gray-700 ">
@@ -44,9 +44,26 @@
 								<p>{{ $item->buyername }}</p>
 							</div>
 						</div>
+						<div>
+							<label class="block text-sm font-semibold leading-5 text-gray-700 ">
+								Status Semasa Usahawan
+							</label>
+							<div class="border-2 py-1 px-1 rounded-md text-sm">
+								<p>{{ $item->curr_status ? null : 'Aktif Repayer','Meninggal' }}</p>
+							</div>
+						</div>
 					@endforeach
 				</x-general.grid>
 			</div>
+			
+			@if(session()->has('activestatus'))
+				<div class="px-5 pt-2">
+					<x-general.alert.base
+						class="border-2 bg-green-600 border-green-500 rounded-md p-2 text-sm text-white my-2">
+						<x-slot name="message">Status Sekatan Akaun Telah Dikemaskini</x-slot>
+					</x-general.alert.base>
+				</div>
+			@endif
 
 			@if(session()->has('activestatus'))
 				<div class="px-5 pt-2">
@@ -165,5 +182,44 @@
         }).columns.adjust().responsive.recalc();
     });
 </script>
+
+{{-- disable start date --}}
+<script>
+$(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var minDate= year + '-' + month + '-' + day;
+    
+    $('#start_date').attr('min', minDate);
+});
+</script>
+
+{{-- disable end date --}}
+<script>
+	$(function(){
+		var dtToday = new Date();
+		
+		var month = dtToday.getMonth() + 1;
+		var day = dtToday.getDate();
+		var year = dtToday.getFullYear();
+		if(month < 10)
+			month = '0' + month.toString();
+		if(day < 10)
+			day = '0' + day.toString();
+		
+		var minDate= year + '-' + month + '-' + day;
+		
+		$('#end_date').attr('min', minDate);
+	});
+	</script>
+
 @endpush
 @endsection

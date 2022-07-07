@@ -49,7 +49,7 @@
           <div class="bg-white shadow-lg p-4 rounded-lg">
             <div class="">
               <p class="text-lg font-semibold">Tarikh Mula Potongan</p>
-              <p>{{ $item->hvaluedt }}</p>
+              <p>{{ $item->cft_dt }}</p>
             </div>
           </div>
           <div class="bg-white shadow-lg p-4 rounded-lg">

@@ -6,8 +6,9 @@
                     <table class="data-table min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-800">
                                 <tr>
+                                    <th data-priority="1" class="uppercase text-xs text-white text-left">No</th>
                                     <th data-priority="1" class="uppercase text-xs text-white text-left">Rujukan Fail RES</th>
-                                    <th data-priority="2" class="uppercase text-xs text-white text-left">Mod Bayara</th>
+                                    <th data-priority="2" class="uppercase text-xs text-white text-left">Mod Bayaran</th>
                                     <th data-priority="3" class="uppercase text-xs text-white text-left">Tarikh Potongan</th>
                                     <th data-priority="4" class="uppercase text-xs text-white text-left">BankID</th>
                                     <th data-priority="5" class="uppercase text-xs text-white text-left">Amaun(RM)</th>
@@ -18,6 +19,7 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @foreach ($filelist_res as $item)
                                     <tr>
+                                        <td class="text-sm text-left">{{ (($filelist_res ->currentpage()-1) * $filelist_res ->perpage()) + $loop->index + 1 }}</td>
                                         <td class="text-sm text-left">{{ $item->filename }}</td>
                                         <td class="text-sm text-left">{{ $item->hmode }}</td>
                                         <td class="text-sm text-left">{{ isset($item->hdate) ? ($item->hdate):'' }}</td>

@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FMS_USERS;
 use Illuminate\Support\Facades\DB;
+use App\Models\USERS;
+use Carbon\Carbon;
 
 class AuthenticationUser extends Controller
 {
     public function logmasuk()
     {
         if(session()->has('authenticatedUser')) {
+
             return redirect()->route('dashboard');
         }
         return view('auth.login');
@@ -24,8 +27,9 @@ class AuthenticationUser extends Controller
 
     public function systemLogin($userid, $password)
     {
-        dump($userid);
-        dd($password);
+        // dump($userid);
+        // dd($password);
+        // die();
         $user = FMS_USERS::where('USERID',strtoupper($userid))->first();
         if($user != null)
         {
@@ -39,7 +43,7 @@ class AuthenticationUser extends Controller
                     'idtype' => $user->idtype,
                 ]);
 
-                return redirect()->route('dashboard');
+                return redirect()->route('emandate.dashboard');
             }
             else {
                 return redirect()->route('logmasuk')->with('loginerror', 'Ralat pada Kata Laluan');
@@ -61,14 +65,46 @@ class AuthenticationUser extends Controller
             if($savedpassword === $request->katalaluan) {
 
                 /* Join table  to get state_id */
-            $user_state = DB::table('FMS_USERS')
-             -> select('BANK_OFFICERS.BRANCH_CODE', 'BRANCHES.BRANCH_TYPE' ,'BRANCHES.STATE_CODE' ,'BRANCHES.BRANCH_NAME','BNM_STATECODES.CODE','BNM_STATECODES.DESCRIPTION') //DB::raw('UF_GET_STATE_DESC(SUBSTR(BANK_OFFICERS.BRANCH_CODE,0,2)) AS state'))
-            ->join ('BANK_OFFICERS', 'FMS_USERS.USERID', '=', 'BANK_OFFICERS.OFFICER_ID') 
-            ->join ('BRANCHES', 'BANK_OFFICERS.BRANCH_CODE', '=', 'BRANCHES.BRANCH_CODE')
-            ->join ('BNM_STATECODES','BRANCHES.STATE_CODE','=' , 'BNM_STATECODES.CODE')
-            ->where('FMS_USERS.USERID' , '=', $user->userid)
-            ->first(); 
-             //dd($user_state);
+            // $user_state = DB::table('FMS_USERS')
+            // -> select('BANK_OFFICERS.BRANCH_CODE', 'BRANCHES.BRANCH_TYPE' ,'BRANCHES.STATE_CODE' ,'BRANCHES.BRANCH_NAME','BNM_STATECODES.CODE','BNM_STATECODES.DESCRIPTION') //DB::raw('UF_GET_STATE_DESC(SUBSTR(BANK_OFFICERS.BRANCH_CODE,0,2)) AS state'))
+            // ->join ('BANK_OFFICERS', 'FMS_USERS.USERID', '=', 'BANK_OFFICERS.OFFICER_ID') 
+            // ->join ('BRANCHES', 'BANK_OFFICERS.BRANCH_CODE', '=', 'BRANCHES.BRANCH_CODE')
+            // ->join ('BNM_STATECODES','BRANCHES.STATE_CODE','=' , 'BNM_STATECODES.CODE')
+            // ->where('FMS_USERS.USERID' , '=', $user->userid)
+            // ->first(); 
+            //  dd($user_state);
+            //  die();
+
+            /*add new user_state */
+                // $user_state = DB::table('FMS_USERS')
+                // ->select('BANK_OFFICERS.BRANCH_CODE', 'BRANCHES.BRANCH_TYPE' ,'BRANCHES.STATE_CODE' ,'BRANCHES.BRANCH_NAME','BNM_STATECODES.CODE','BNM_STATECODES.DESCRIPTION', 'BANK_OFFICERS.OFFICER_POSITION', 'MDT_USERS.CATEGORY_ACCESS') 
+                // ->join ('BANK_OFFICERS', 'FMS_USERS.USERID', '=', 'BANK_OFFICERS.OFFICER_ID') 
+                // ->join ('BRANCHES', 'BANK_OFFICERS.BRANCH_CODE', '=', 'BRANCHES.BRANCH_CODE')
+                // ->join ('BNM_STATECODES','BRANCHES.STATE_CODE','=' , 'BNM_STATECODES.CODE')
+                // ->join ('MDT_USERS', 'BANK_OFFICERS.OFFICER_POSITION', '=', 'MDT_USERS.POSITION' ) //FOR USER CATEGORY ACCESS
+                // ->where('FMS_USERS.USERID' , '=', $user->userid)
+                // ->first();
+
+                /*start script hafidz*/
+                $user_state = DB::table('FMS_USERS')
+                ->select('BANK_OFFICERS.BRANCH_CODE', 'BRANCHES.BRANCH_TYPE' ,'BRANCHES.STATE_CODE' ,'BRANCHES.BRANCH_NAME','BANK_OFFICERS.OFFICER_POSITION','BNM_STATECODES.DESCRIPTION') 
+                ->join ('BANK_OFFICERS', 'FMS_USERS.USERID', '=', 'BANK_OFFICERS.OFFICER_ID') 
+                ->join ('BRANCHES', 'BANK_OFFICERS.BRANCH_CODE', '=', 'BRANCHES.BRANCH_CODE')
+                ->join ('BNM_STATECODES','BRANCHES.STATE_CODE','=' , 'BNM_STATECODES.CODE')
+                ->where('FMS_USERS.USERID' , '=', $user->userid)
+                ->first();
+                //dd($user_state);
+                /*end script hafidz*/ 
+                
+                // user roles
+                // $user_roles =  DB::table('FMS_USERS')
+                //         -> select('MDT_USER_ACTION.ACTION', )
+                //         ->join ('BANK_OFFICERS', 'FMS_USERS.USERID', '=', 'BANK_OFFICERS.OFFICER_ID')
+                //         ->join ('MDT_USER_ACTION', 'MDT_USER_ACTION.ID_USER', '=', 'BANK_OFFICERS.OFFICER_ID')
+                //         ->where('FMS_USERS.USERID' , '=', $user->userid)
+                //         ->first();
+
+
 
             /* end join table to get state_id */
 
@@ -83,6 +119,12 @@ class AuthenticationUser extends Controller
                     'branch_type' => $user_state->branch_type,
                     'branch_name' => $user_state->branch_name,
                     'state_name' => $user_state->description,
+                    'position' => $user_state->officer_position,
+                    //'access_user' => $user_state->category_access,
+
+                    //action users
+                    //'action_user' => $user_roles ->action,
+
                 ]);
 
                 // dd($user_state);

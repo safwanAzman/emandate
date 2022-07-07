@@ -9,6 +9,7 @@
                 <x-table.table>
                     <x-slot name="thead">
                         <x-table.table-header class="text-left" value="Tarikh Sekatan Pemotongan" sort="" />
+                        <x-table.table-header class="text-left" value="Cawangan" sort="" />
                         <x-table.table-header class="text-left" value="Tarikh Terakhir Pemotongan Berjaya" sort="" />
                         <x-table.table-header class="text-left" value="No Akaun" sort="" />
                         <x-table.table-header class="text-left" value="Kad Pengenalan" sort="" />
@@ -19,6 +20,9 @@
                             <tr>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ substr($item->blockpayment_date,0,4).'-'.substr($item->blockpayment_date,5,2).'-'.substr($item->blockpayment_date,8,2) }} 
+                                </x-table.table-body>
+                                <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
+                                    {{ $item->branch_name }}
                                 </x-table.table-body>
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     {{ substr($item->lastsuccess_date,0,4).'-'.substr($item->lastsuccess_date,5,2).'-'.substr($item->lastsuccess_date,8,2) }}

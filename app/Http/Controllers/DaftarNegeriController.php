@@ -14,13 +14,13 @@ class DaftarNegeriController extends Controller
     
         $daftarAll = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
         ->get();
 
         $daftarJhr = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '01')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -28,7 +28,7 @@ class DaftarNegeriController extends Controller
 
         $daftarKdh = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '02')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -36,7 +36,7 @@ class DaftarNegeriController extends Controller
 
         $daftarKltn = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '03')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -44,7 +44,7 @@ class DaftarNegeriController extends Controller
 
         $daftarMlk = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '04')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -52,7 +52,7 @@ class DaftarNegeriController extends Controller
 
         $daftarN9 = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '05')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -60,7 +60,7 @@ class DaftarNegeriController extends Controller
 
         $daftarPhg = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '06')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -68,7 +68,7 @@ class DaftarNegeriController extends Controller
 
         $daftarPrk = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '07')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -76,7 +76,7 @@ class DaftarNegeriController extends Controller
 
         $daftarPrls = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '08')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -84,7 +84,7 @@ class DaftarNegeriController extends Controller
 
         $daftarPP = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '09')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -92,7 +92,7 @@ class DaftarNegeriController extends Controller
 
         $daftarSbh = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '10')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -100,7 +100,7 @@ class DaftarNegeriController extends Controller
 
         $daftarSrwk = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '11')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -108,7 +108,7 @@ class DaftarNegeriController extends Controller
 
         $daftarSlngr = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->whereIN('BRANCHES.STATE_CODE', ['12', '16'])
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -116,7 +116,7 @@ class DaftarNegeriController extends Controller
 
         $daftarTrg = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '13')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')
@@ -124,7 +124,7 @@ class DaftarNegeriController extends Controller
 
         $daftarKl = DB::table('MDT_PRNE')
         ->select(DB::raw('MDT_PRNE.PAYREFNUM, count(*) as bil'))
-        ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+        ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
         ->join ('BRANCHES', DB::raw("SUBSTR(ACCOUNT_MASTER.BRANCH_CODE,1,2)"), '=', 'BRANCHES.STATE_CODE')
         ->where('BRANCHES.STATE_CODE' , '=',  '14')
         ->groupBy('MDT_PRNE.PAYREFNUM', 'MDT_PRNE.SECTION')

@@ -37,6 +37,7 @@ class Mainrptenrp extends Component
                         ->get() 
                         
             ]);
+            //dd($this->rpt_enrp);
         }
         else {
             
@@ -44,7 +45,7 @@ class Mainrptenrp extends Component
 
                 'rpt_enrp' => DB::table('MDT_PRNE')
                             ->select(DB::raw('hcrdate, count(*) as bil'))
-                            ->join ('ACCOUNT_MASTER', DB::raw("TRIM(ACCOUNT_MASTER.ACCOUNT_NO)"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
+                            ->join ('ACCOUNT_MASTER', DB::raw("ACCOUNT_MASTER.ACCOUNT_NO"), '=', DB::raw("TRIM(MDT_PRNE.PAYREFNUM)")  )
                             ->join ('BRANCHES', 'BRANCHES.BRANCH_CODE', '=', 'ACCOUNT_MASTER.BRANCH_CODE')
                             ->where('BRANCHES.BRANCH_CODE' , '=',  $branch_user )
                             ->where('hcrdate', 'like', $findmainrptenrp)

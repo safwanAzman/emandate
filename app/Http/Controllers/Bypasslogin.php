@@ -15,9 +15,8 @@ class Bypasslogin extends Controller
 		//$aa = $decrypt;
 		//dd($aa);
 		//die;
-       
+
 		//print_r($decrypt[0]->decryptval);
-		 
         
         $array = array();
         $asArray = explode('<>',$decrypt[0]->decryptval);
@@ -29,7 +28,7 @@ class Bypasslogin extends Controller
             $finalArray[$tmp[0]] = $tmp[1];
 		}
 		
-         
+        
 		$fmsuserid = $finalArray['userid'];
 		$fmspwd	   = $finalArray['katalaluan'];
 		//dd($fmsuserid);
@@ -50,14 +49,24 @@ class Bypasslogin extends Controller
 				//dd('pass');
 				//die;
                 /* Join table  to get state_id */
-                $user_state = DB::table('FMS_USERS')
-                -> select('BANK_OFFICERS.BRANCH_CODE', 'BRANCHES.BRANCH_TYPE' ,'BRANCHES.STATE_CODE' ,'BRANCHES.BRANCH_NAME','BNM_STATECODES.CODE','BNM_STATECODES.DESCRIPTION') //DB::raw('UF_GET_STATE_DESC(SUBSTR(BANK_OFFICERS.BRANCH_CODE,0,2)) AS state'))
+                // $user_state = DB::table('FMS_USERS')
+                // -> select('BANK_OFFICERS.BRANCH_CODE', 'BRANCHES.BRANCH_TYPE' ,'BRANCHES.STATE_CODE' ,'BRANCHES.BRANCH_NAME','BNM_STATECODES.CODE','BNM_STATECODES.DESCRIPTION') //DB::raw('UF_GET_STATE_DESC(SUBSTR(BANK_OFFICERS.BRANCH_CODE,0,2)) AS state'))
+                // ->join ('BANK_OFFICERS', 'FMS_USERS.USERID', '=', 'BANK_OFFICERS.OFFICER_ID') 
+                // ->join ('BRANCHES', 'BANK_OFFICERS.BRANCH_CODE', '=', 'BRANCHES.BRANCH_CODE')
+                // ->join ('BNM_STATECODES','BRANCHES.STATE_CODE','=' , 'BNM_STATECODES.CODE')
+                // ->where('FMS_USERS.USERID' , '=', $user->userid)
+                // ->first(); 
+             //dd($user_state);
+
+            $user_state = DB::table('FMS_USERS')
+                -> select('BANK_OFFICERS.BRANCH_CODE', 'BRANCHES.BRANCH_TYPE' ,'BRANCHES.STATE_CODE' ,'BRANCHES.BRANCH_NAME','BNM_STATECODES.CODE','BNM_STATECODES.DESCRIPTION', 'BANK_OFFICERS.OFFICER_POSITION', 'MDT_USERS.CATEGORY_ACCESS') 
                 ->join ('BANK_OFFICERS', 'FMS_USERS.USERID', '=', 'BANK_OFFICERS.OFFICER_ID') 
                 ->join ('BRANCHES', 'BANK_OFFICERS.BRANCH_CODE', '=', 'BRANCHES.BRANCH_CODE')
                 ->join ('BNM_STATECODES','BRANCHES.STATE_CODE','=' , 'BNM_STATECODES.CODE')
+                ->join ('MDT_USERS', 'BANK_OFFICERS.OFFICER_POSITION', '=', 'MDT_USERS.POSITION' ) //FOR USER CATEGORY ACCESS
                 ->where('FMS_USERS.USERID' , '=', $user->userid)
-                ->first(); 
-             //dd($user_state);
+                ->first();
+            //dd($user_state);
 
             /* end join table to get state_id */
 
@@ -73,6 +82,8 @@ class Bypasslogin extends Controller
                     'branch_type' => $user_state->branch_type,
                     'branch_name' => $user_state->branch_name,
                     'state_name' => $user_state->description,
+                    'position' => $user_state->officer_position,
+                    //'access_user' => $user_state->category_access,
                 ]);
 
                 // dd(session()->get('authenticatedUser'));
